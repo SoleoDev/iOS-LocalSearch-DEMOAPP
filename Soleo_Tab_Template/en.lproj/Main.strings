@@ -1,0 +1,132 @@
+
+/* Class = "UILabel"; text = "State"; ObjectID = "19o-eQ-mdT"; */
+"19o-eQ-mdT.text" = "State";
+
+/* Class = "UITextField"; placeholder = "Enter City Name"; ObjectID = "417-Xy-Tyh"; */
+"417-Xy-Tyh.placeholder" = "Enter City Name";
+
+/* Class = "UITableViewController"; title = "Recent Searches"; ObjectID = "7ny-FW-B9F"; */
+"7ny-FW-B9F.title" = "Recent Searches";
+
+/* Class = "UILabel"; text = "Monetization Completion Phone number"; ObjectID = "8CN-Q4-Hnd"; */
+"8CN-Q4-Hnd.text" = "Monetization Completion Phone number";
+
+/* Class = "UINavigationItem"; title = "Search Results"; ObjectID = "8F1-dT-jiQ"; */
+"8F1-dT-jiQ.title" = "Search Results";
+
+/* Class = "UITextField"; placeholder = "Searching for:"; ObjectID = "9ZU-KY-8Ux"; */
+"9ZU-KY-8Ux.placeholder" = "Searching for:";
+
+/* Class = "UILabel"; text = "Log-in"; ObjectID = "B0d-hp-VZb"; */
+"B0d-hp-VZb.text" = "Log-in";
+
+/* Class = "UILabel"; text = "Other Info"; ObjectID = "Bwm-Q9-ypy"; */
+"Bwm-Q9-ypy.text" = "Other Info";
+
+/* Class = "UINavigationItem"; title = "SearchResults"; ObjectID = "CiD-nA-FBa"; */
+"CiD-nA-FBa.title" = "SearchResults";
+
+/* Class = "UILabel"; text = "BusinessName"; ObjectID = "EIC-m6-VLj"; */
+"EIC-m6-VLj.text" = "BusinessName";
+
+/* Class = "UILabel"; text = "Address 1"; ObjectID = "EcS-Ih-NnQ"; */
+"EcS-Ih-NnQ.text" = "Address 1";
+
+/* Class = "UINavigationItem"; title = "Listing Details"; ObjectID = "F2M-1S-Xhz"; */
+"F2M-1S-Xhz.title" = "Listing Details";
+
+/* Class = "UINavigationItem"; title = "Searching for"; ObjectID = "F32-iM-Cr8"; */
+"F32-iM-Cr8.title" = "Searching for";
+
+/* Class = "UILabel"; text = "BusinessName"; ObjectID = "FMX-FF-rNj"; */
+"FMX-FF-rNj.text" = "BusinessName";
+
+/* Class = "UITextView"; text = "Other information"; ObjectID = "FNo-uO-QRR"; */
+"FNo-uO-QRR.text" = "Other information";
+
+/* Class = "UILabel"; text = "Distance From:"; ObjectID = "LMZ-iz-eow"; */
+"LMZ-iz-eow.text" = "Distance From:";
+
+/* Class = "UILabel"; text = "State Address"; ObjectID = "MjO-rV-od2"; */
+"MjO-rV-od2.text" = "State Address";
+
+/* Class = "UITextField"; placeholder = "Enter State Name"; ObjectID = "MkL-Wc-nn0"; */
+"MkL-Wc-nn0.placeholder" = "Enter State Name";
+
+/* Class = "UILabel"; text = "Favorite"; ObjectID = "PV4-4d-wpM"; */
+"PV4-4d-wpM.text" = "Favorite";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "QPY-Uk-0rZ"; */
+"QPY-Uk-0rZ.text" = "Type";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "RMw-3n-y3D"; */
+"RMw-3n-y3D.title" = "Back";
+
+/* Class = "UILabel"; text = "Postal Code - Zip code"; ObjectID = "TUY-OJ-Cii"; */
+"TUY-OJ-Cii.text" = "Postal Code - Zip code";
+
+/* Class = "UILabel"; text = "City"; ObjectID = "ULx-h7-WWA"; */
+"ULx-h7-WWA.text" = "City";
+
+/* Class = "UITextField"; placeholder = "Search_Name"; ObjectID = "UMi-0S-3ap"; */
+"UMi-0S-3ap.placeholder" = "Search_Name";
+
+/* Class = "UINavigationItem"; title = "Locations and Filters"; ObjectID = "YG9-Vq-Daw"; */
+"YG9-Vq-Daw.title" = "Locations and Filters";
+
+/* Class = "UILabel"; text = "Type"; ObjectID = "ZeJ-My-NeG"; */
+"ZeJ-My-NeG.text" = "Type";
+
+/* Class = "UILabel"; text = "Menu"; ObjectID = "a91-C6-2la"; */
+"a91-C6-2la.text" = "Menu";
+
+/* Class = "UILabel"; text = "Completion #"; ObjectID = "atr-aZ-Clr"; */
+"atr-aZ-Clr.text" = "Completion #";
+
+/* Class = "UILabel"; text = "External Source"; ObjectID = "bK9-bI-poO"; */
+"bK9-bI-poO.text" = "External Source";
+
+/* Class = "UILabel"; text = "Time"; ObjectID = "boz-Kc-NL6"; */
+"boz-Kc-NL6.text" = "Time";
+
+/* Class = "UINavigationController"; title = "Nav_Recent"; ObjectID = "e3S-6e-ZJ8"; */
+"e3S-6e-ZJ8.title" = "Nav_Recent";
+
+/* Class = "UIButton"; normalTitle = "Add"; ObjectID = "eLm-NF-xd6"; */
+"eLm-NF-xd6.normalTitle" = "Add";
+
+/* Class = "UILabel"; text = "Distance To:"; ObjectID = "ezj-2B-e1t"; */
+"ezj-2B-e1t.text" = "Distance To:";
+
+/* Class = "UILabel"; text = "Location"; ObjectID = "igu-FX-HN5"; */
+"igu-FX-HN5.text" = "Location";
+
+/* Class = "UILabel"; text = "Settings"; ObjectID = "ouj-Ud-BSh"; */
+"ouj-Ud-BSh.text" = "Settings";
+
+/* Class = "UILabel"; text = "Sort Filters"; ObjectID = "pFZ-ih-wiC"; */
+"pFZ-ih-wiC.text" = "Sort Filters";
+
+/* Class = "UILabel"; text = "Display Phone"; ObjectID = "pdi-DG-Vmo"; */
+"pdi-DG-Vmo.text" = "Display Phone";
+
+/* Class = "UILabel"; text = "Current"; ObjectID = "peb-dQ-4yM"; */
+"peb-dQ-4yM.text" = "Current";
+
+/* Class = "UILabel"; text = "City Address"; ObjectID = "qgF-3f-vYj"; */
+"qgF-3f-vYj.text" = "City Address";
+
+/* Class = "UINavigationItem"; title = "Recent Searches"; ObjectID = "sEu-Kp-ikx"; */
+"sEu-Kp-ikx.title" = "Recent Searches";
+
+/* Class = "UILabel"; text = "Bussines Name "; ObjectID = "uWD-Yy-aSo"; */
+"uWD-Yy-aSo.text" = "Bussines Name ";
+
+/* Class = "UILabel"; text = "Display Phone number"; ObjectID = "vSS-GV-WFB"; */
+"vSS-GV-WFB.text" = "Display Phone number";
+
+/* Class = "UINavigationController"; title = "Nav_Search"; ObjectID = "xlm-QS-fUR"; */
+"xlm-QS-fUR.title" = "Nav_Search";
+
+/* Class = "UILabel"; text = "Show as Collection"; ObjectID = "z9x-6s-1z4"; */
+"z9x-6s-1z4.text" = "Show as Collection";

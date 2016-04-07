@@ -1,0 +1,810 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7E0603CB1C5BBE56006ECA0A /* RecentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0603C81C5BBE56006ECA0A /* RecentTableViewController.swift */; };
+		7E0603CD1C5BBE56006ECA0A /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0603CA1C5BBE56006ECA0A /* SwiftyJSON.swift */; };
+		7E0603DB1C5BC7EC006ECA0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0603DA1C5BC7EC006ECA0A /* Foundation.framework */; };
+		7E0603E51C5BEEE9006ECA0A /* ListingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0603E41C5BEEE9006ECA0A /* ListingCollectionViewController.swift */; };
+		7E0603E71C5BEF7E006ECA0A /* ListingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0603E61C5BEF7E006ECA0A /* ListingDetailsViewController.swift */; };
+		7E45AD0B1C5F94470023284B /* SoleoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD071C5F94470023284B /* SoleoAPI.swift */; };
+		7E45AD0C1C5F94470023284B /* APIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD081C5F94470023284B /* APIConnector.swift */; };
+		7E45AD0D1C5F94470023284B /* Business_type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD091C5F94470023284B /* Business_type.swift */; };
+		7E45AD101C5F96E60023284B /* Search_type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD0F1C5F96E60023284B /* Search_type.swift */; };
+		7E45AD141C5FC7DC0023284B /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */; };
+		7E45AD161C5FC7FE0023284B /* ListingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */; };
+		7E45AD1A1C5FE3CE0023284B /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */; };
+		7E45AD1E1C62660B0023284B /* Victor_NEW_YORK.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7E45AD1D1C62660B0023284B /* Victor_NEW_YORK.gpx */; };
+		7E45AD201C627A410023284B /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD1F1C627A410023284B /* Async.swift */; };
+		7E523C891C59106A005979CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523C881C59106A005979CE /* AppDelegate.swift */; };
+		7E523C8B1C59106A005979CE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523C8A1C59106A005979CE /* FirstViewController.swift */; };
+		7E523CA01C59106A005979CE /* Soleo_Tab_TemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523C9F1C59106A005979CE /* Soleo_Tab_TemplateTests.swift */; };
+		7E523CAB1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CAA1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift */; };
+		7E523CBB1C591E72005979CE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CBA1C591E72005979CE /* TabBarViewController.swift */; };
+		7E523CD51C5920C7005979CE /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CCD1C5920C7005979CE /* MMDrawerBarButtonItem.m */; };
+		7E523CD61C5920C7005979CE /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CCF1C5920C7005979CE /* MMDrawerController.m */; };
+		7E523CD71C5920C7005979CE /* MMDrawerVisualState.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CD21C5920C7005979CE /* MMDrawerVisualState.m */; };
+		7E523CD81C5920C7005979CE /* UIViewController+MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CD41C5920C7005979CE /* UIViewController+MMDrawerController.m */; };
+		7E523CDA1C593B03005979CE /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CD91C593B03005979CE /* LeftViewController.swift */; };
+		7E523CDC1C593B27005979CE /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CDB1C593B27005979CE /* RightViewController.swift */; };
+		7E63FD5A1CAD7D1A00EAFB40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E523C8E1C59106A005979CE /* Main.storyboard */; };
+		7E846F4B1C888BDF0046C708 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E846F4A1C888BDF0046C708 /* AboutViewController.swift */; };
+		7E846F531C8893350046C708 /* async.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7E846F4E1C8893350046C708 /* async.txt */; };
+		7E846F541C8893350046C708 /* ezloading in Resources */ = {isa = PBXBuildFile; fileRef = 7E846F4F1C8893350046C708 /* ezloading */; };
+		7E846F551C8893350046C708 /* mmdrawercontroller in Resources */ = {isa = PBXBuildFile; fileRef = 7E846F501C8893350046C708 /* mmdrawercontroller */; };
+		7E846F561C8893350046C708 /* swiftyjson in Resources */ = {isa = PBXBuildFile; fileRef = 7E846F511C8893350046C708 /* swiftyjson */; };
+		7EE40C4D1C7B62CA00E32C72 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7EE40C4F1C7B62CA00E32C72 /* Localizable.strings */; };
+		7EE40CA91C7BC0CA00E32C72 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EE40CA81C7BC0CA00E32C72 /* CoreLocation.framework */; };
+		7EF3AF481C7F5B14004CFBEE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EF3AF471C7F5B14004CFBEE /* MapKit.framework */; };
+		7EFD12311CA30B9500D80EA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E523C911C59106A005979CE /* Assets.xcassets */; };
+		7EFD12381CA310EA00D80EA7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E523C931C59106A005979CE /* LaunchScreen.storyboard */; };
+		818C08A21C6E213D00E6380F /* ListingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C08A11C6E213D00E6380F /* ListingTableViewController.swift */; };
+		818C08A41C6E21A300E6380F /* ListingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818C08A31C6E21A300E6380F /* ListingTableViewCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		7EFD12331CA30BD400D80EA7 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.assetcatalog;
+			fileType = folder.assetcatalog;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# actool\n";
+		};
+/* End PBXBuildRule section */
+
+/* Begin PBXContainerItemProxy section */
+		7E523C9C1C59106A005979CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E523C7D1C59106A005979CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E523C841C59106A005979CE;
+			remoteInfo = Soleo_Tab_Template;
+		};
+		7E523CA71C59106A005979CE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E523C7D1C59106A005979CE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E523C841C59106A005979CE;
+			remoteInfo = Soleo_Tab_Template;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7E0603C81C5BBE56006ECA0A /* RecentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTableViewController.swift; sourceTree = "<group>"; };
+		7E0603CA1C5BBE56006ECA0A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		7E0603D21C5BC7BD006ECA0A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		7E0603D41C5BC7C5006ECA0A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		7E0603D61C5BC7CD006ECA0A /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		7E0603D81C5BC7DC006ECA0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7E0603DA1C5BC7EC006ECA0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7E0603DC1C5BC7F6006ECA0A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		7E0603DE1C5BC7FE006ECA0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7E0603E41C5BEEE9006ECA0A /* ListingCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCollectionViewController.swift; sourceTree = "<group>"; };
+		7E0603E61C5BEF7E006ECA0A /* ListingDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingDetailsViewController.swift; sourceTree = "<group>"; };
+		7E45AD071C5F94470023284B /* SoleoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoleoAPI.swift; sourceTree = "<group>"; };
+		7E45AD081C5F94470023284B /* APIConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConnector.swift; sourceTree = "<group>"; };
+		7E45AD091C5F94470023284B /* Business_type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business_type.swift; sourceTree = "<group>"; };
+		7E45AD0F1C5F96E60023284B /* Search_type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search_type.swift; sourceTree = "<group>"; };
+		7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
+		7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCollectionViewCell.swift; sourceTree = "<group>"; };
+		7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
+		7E45AD1D1C62660B0023284B /* Victor_NEW_YORK.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Victor_NEW_YORK.gpx; sourceTree = "<group>"; };
+		7E45AD1F1C627A410023284B /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
+		7E523C851C59106A005979CE /* Soleo Local API Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soleo Local API Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E523C881C59106A005979CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7E523C8A1C59106A005979CE /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		7E523C8F1C59106A005979CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		7E523C911C59106A005979CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E523C941C59106A005979CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7E523C961C59106A005979CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E523C9B1C59106A005979CE /* SoLocal API.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SoLocal API.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E523C9F1C59106A005979CE /* Soleo_Tab_TemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soleo_Tab_TemplateTests.swift; sourceTree = "<group>"; };
+		7E523CA11C59106A005979CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E523CA61C59106A005979CE /* SoLocal API.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SoLocal API.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E523CAA1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soleo_Tab_TemplateUITests.swift; sourceTree = "<group>"; };
+		7E523CAC1C59106A005979CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E523CBA1C591E72005979CE /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		7E523CCB1C5920C7005979CE /* Soleo-Local-API-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Soleo-Local-API-Bridging-Header.h"; sourceTree = "<group>"; };
+		7E523CCC1C5920C7005979CE /* MMDrawerBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerBarButtonItem.h; sourceTree = "<group>"; };
+		7E523CCD1C5920C7005979CE /* MMDrawerBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerBarButtonItem.m; sourceTree = "<group>"; };
+		7E523CCE1C5920C7005979CE /* MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerController.h; sourceTree = "<group>"; };
+		7E523CCF1C5920C7005979CE /* MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerController.m; sourceTree = "<group>"; };
+		7E523CD01C5920C7005979CE /* MMDrawerController+Subclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MMDrawerController+Subclass.h"; sourceTree = "<group>"; };
+		7E523CD11C5920C7005979CE /* MMDrawerVisualState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MMDrawerVisualState.h; sourceTree = "<group>"; };
+		7E523CD21C5920C7005979CE /* MMDrawerVisualState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MMDrawerVisualState.m; sourceTree = "<group>"; };
+		7E523CD31C5920C7005979CE /* UIViewController+MMDrawerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MMDrawerController.h"; sourceTree = "<group>"; };
+		7E523CD41C5920C7005979CE /* UIViewController+MMDrawerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MMDrawerController.m"; sourceTree = "<group>"; };
+		7E523CD91C593B03005979CE /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		7E523CDB1C593B27005979CE /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
+		7E846F4A1C888BDF0046C708 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		7E846F4E1C8893350046C708 /* async.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = async.txt; sourceTree = "<group>"; };
+		7E846F4F1C8893350046C708 /* ezloading */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ezloading; sourceTree = "<group>"; };
+		7E846F501C8893350046C708 /* mmdrawercontroller */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mmdrawercontroller; sourceTree = "<group>"; };
+		7E846F511C8893350046C708 /* swiftyjson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = swiftyjson; sourceTree = "<group>"; };
+		7EE40C4E1C7B62CA00E32C72 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7EE40CA41C7BC0AB00E32C72 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		7EE40CA61C7BC0C500E32C72 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7EE40CA81C7BC0CA00E32C72 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		7EF3AF471C7F5B14004CFBEE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		818C08A11C6E213D00E6380F /* ListingTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewController.swift; sourceTree = "<group>"; };
+		818C08A31C6E21A300E6380F /* ListingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingTableViewCell.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E523C821C59106A005979CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EF3AF481C7F5B14004CFBEE /* MapKit.framework in Frameworks */,
+				7EE40CA91C7BC0CA00E32C72 /* CoreLocation.framework in Frameworks */,
+				7E0603DB1C5BC7EC006ECA0A /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E523C981C59106A005979CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E523CA31C59106A005979CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7E0603CE1C5BBE61006ECA0A /* External */ = {
+			isa = PBXGroup;
+			children = (
+				7E45AD1F1C627A410023284B /* Async.swift */,
+				7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */,
+				7E523CCB1C5920C7005979CE /* Soleo-Local-API-Bridging-Header.h */,
+				7E523CBC1C59204D005979CE /* MMDrawer */,
+				7E0603CA1C5BBE56006ECA0A /* SwiftyJSON.swift */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		7E0603D11C5BC768006ECA0A /* iOSFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7EF3AF471C7F5B14004CFBEE /* MapKit.framework */,
+				7EE40CA81C7BC0CA00E32C72 /* CoreLocation.framework */,
+				7EE40CA61C7BC0C500E32C72 /* AdSupport.framework */,
+				7EE40CA41C7BC0AB00E32C72 /* CoreMotion.framework */,
+				7E0603DE1C5BC7FE006ECA0A /* Security.framework */,
+				7E0603DC1C5BC7F6006ECA0A /* SystemConfiguration.framework */,
+				7E0603DA1C5BC7EC006ECA0A /* Foundation.framework */,
+				7E0603D81C5BC7DC006ECA0A /* CoreGraphics.framework */,
+				7E0603D61C5BC7CD006ECA0A /* CFNetwork.framework */,
+				7E0603D41C5BC7C5006ECA0A /* AudioToolbox.framework */,
+				7E0603D21C5BC7BD006ECA0A /* AVFoundation.framework */,
+			);
+			name = iOSFrameworks;
+			sourceTree = "<group>";
+		};
+		7E0603EA1C5BF02B006ECA0A /* Data_classes */ = {
+			isa = PBXGroup;
+			children = (
+				7E45AD0F1C5F96E60023284B /* Search_type.swift */,
+			);
+			path = Data_classes;
+			sourceTree = "<group>";
+		};
+		7E0603EB1C5BF042006ECA0A /* Support-CustomViews */ = {
+			isa = PBXGroup;
+			children = (
+				7EE40C4F1C7B62CA00E32C72 /* Localizable.strings */,
+			);
+			path = "Support-CustomViews";
+			sourceTree = "<group>";
+		};
+		7E523C7C1C59106A005979CE = {
+			isa = PBXGroup;
+			children = (
+				7E45AD1D1C62660B0023284B /* Victor_NEW_YORK.gpx */,
+				7E0603D11C5BC768006ECA0A /* iOSFrameworks */,
+				7E523C871C59106A005979CE /* Soleo-Local-API */,
+				7E523C9E1C59106A005979CE /* Soleo_Tab_TemplateTests */,
+				7E523CA91C59106A005979CE /* Soleo_Tab_TemplateUITests */,
+				7E523C861C59106A005979CE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7E523C861C59106A005979CE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E523C851C59106A005979CE /* Soleo Local API Demo.app */,
+				7E523C9B1C59106A005979CE /* SoLocal API.xctest */,
+				7E523CA61C59106A005979CE /* SoLocal API.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E523C871C59106A005979CE /* Soleo-Local-API */ = {
+			isa = PBXGroup;
+			children = (
+				7E846F4C1C8890780046C708 /* AboutLicenses */,
+				81DFFC061C5EED0C0032ED9F /* Soleo_API_support */,
+				7E0603CE1C5BBE61006ECA0A /* External */,
+				7E523CB91C591E02005979CE /* StoryBoards */,
+				7E523CB81C591DF9005979CE /* ViewControllers */,
+				7E523C881C59106A005979CE /* AppDelegate.swift */,
+				7E0603EA1C5BF02B006ECA0A /* Data_classes */,
+				7E523C911C59106A005979CE /* Assets.xcassets */,
+				7E0603EB1C5BF042006ECA0A /* Support-CustomViews */,
+				7E523C961C59106A005979CE /* Info.plist */,
+			);
+			name = "Soleo-Local-API";
+			path = Soleo_Tab_Template;
+			sourceTree = "<group>";
+		};
+		7E523C9E1C59106A005979CE /* Soleo_Tab_TemplateTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E523C9F1C59106A005979CE /* Soleo_Tab_TemplateTests.swift */,
+				7E523CA11C59106A005979CE /* Info.plist */,
+			);
+			path = Soleo_Tab_TemplateTests;
+			sourceTree = "<group>";
+		};
+		7E523CA91C59106A005979CE /* Soleo_Tab_TemplateUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E523CAA1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift */,
+				7E523CAC1C59106A005979CE /* Info.plist */,
+			);
+			path = Soleo_Tab_TemplateUITests;
+			sourceTree = "<group>";
+		};
+		7E523CB81C591DF9005979CE /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				7E523CBA1C591E72005979CE /* TabBarViewController.swift */,
+				7E523C8A1C59106A005979CE /* FirstViewController.swift */,
+				7E523CD91C593B03005979CE /* LeftViewController.swift */,
+				7E523CDB1C593B27005979CE /* RightViewController.swift */,
+				7E0603E41C5BEEE9006ECA0A /* ListingCollectionViewController.swift */,
+				7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */,
+				7E0603E61C5BEF7E006ECA0A /* ListingDetailsViewController.swift */,
+				818C08A11C6E213D00E6380F /* ListingTableViewController.swift */,
+				818C08A31C6E21A300E6380F /* ListingTableViewCell.swift */,
+				7E0603C81C5BBE56006ECA0A /* RecentTableViewController.swift */,
+				7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */,
+				7E846F4A1C888BDF0046C708 /* AboutViewController.swift */,
+			);
+			name = ViewControllers;
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		7E523CB91C591E02005979CE /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				7E523C931C59106A005979CE /* LaunchScreen.storyboard */,
+				7E523C8E1C59106A005979CE /* Main.storyboard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		7E523CBC1C59204D005979CE /* MMDrawer */ = {
+			isa = PBXGroup;
+			children = (
+				7E523CCC1C5920C7005979CE /* MMDrawerBarButtonItem.h */,
+				7E523CCD1C5920C7005979CE /* MMDrawerBarButtonItem.m */,
+				7E523CCE1C5920C7005979CE /* MMDrawerController.h */,
+				7E523CCF1C5920C7005979CE /* MMDrawerController.m */,
+				7E523CD01C5920C7005979CE /* MMDrawerController+Subclass.h */,
+				7E523CD11C5920C7005979CE /* MMDrawerVisualState.h */,
+				7E523CD21C5920C7005979CE /* MMDrawerVisualState.m */,
+				7E523CD31C5920C7005979CE /* UIViewController+MMDrawerController.h */,
+				7E523CD41C5920C7005979CE /* UIViewController+MMDrawerController.m */,
+			);
+			name = MMDrawer;
+			path = MMDrawerController;
+			sourceTree = "<group>";
+		};
+		7E846F4C1C8890780046C708 /* AboutLicenses */ = {
+			isa = PBXGroup;
+			children = (
+				7E846F4E1C8893350046C708 /* async.txt */,
+				7E846F4F1C8893350046C708 /* ezloading */,
+				7E846F501C8893350046C708 /* mmdrawercontroller */,
+				7E846F511C8893350046C708 /* swiftyjson */,
+			);
+			path = AboutLicenses;
+			sourceTree = "<group>";
+		};
+		81DFFC061C5EED0C0032ED9F /* Soleo_API_support */ = {
+			isa = PBXGroup;
+			children = (
+				7E45AD071C5F94470023284B /* SoleoAPI.swift */,
+				7E45AD081C5F94470023284B /* APIConnector.swift */,
+				7E45AD091C5F94470023284B /* Business_type.swift */,
+			);
+			name = Soleo_API_support;
+			path = "Soleo-API";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E523C841C59106A005979CE /* Soleo Local API Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E523CAF1C59106A005979CE /* Build configuration list for PBXNativeTarget "Soleo Local API Demo" */;
+			buildPhases = (
+				7E523C811C59106A005979CE /* Sources */,
+				7E523C821C59106A005979CE /* Frameworks */,
+				7E523C831C59106A005979CE /* Resources */,
+			);
+			buildRules = (
+				7EFD12331CA30BD400D80EA7 /* PBXBuildRule */,
+			);
+			dependencies = (
+			);
+			name = "Soleo Local API Demo";
+			productName = Soleo_Tab_Template;
+			productReference = 7E523C851C59106A005979CE /* Soleo Local API Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7E523C9A1C59106A005979CE /* SoLocal APITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E523CB21C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APITests" */;
+			buildPhases = (
+				7E523C971C59106A005979CE /* Sources */,
+				7E523C981C59106A005979CE /* Frameworks */,
+				7E523C991C59106A005979CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E523C9D1C59106A005979CE /* PBXTargetDependency */,
+			);
+			name = "SoLocal APITests";
+			productName = Soleo_Tab_TemplateTests;
+			productReference = 7E523C9B1C59106A005979CE /* SoLocal API.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7E523CA51C59106A005979CE /* SoLocal APIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E523CB51C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APIUITests" */;
+			buildPhases = (
+				7E523CA21C59106A005979CE /* Sources */,
+				7E523CA31C59106A005979CE /* Frameworks */,
+				7E523CA41C59106A005979CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E523CA81C59106A005979CE /* PBXTargetDependency */,
+			);
+			name = "SoLocal APIUITests";
+			productName = Soleo_Tab_TemplateUITests;
+			productReference = 7E523CA61C59106A005979CE /* SoLocal API.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E523C7D1C59106A005979CE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "Soleo Communications";
+				TargetAttributes = {
+					7E523C841C59106A005979CE = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = LUUGWCA2S4;
+					};
+					7E523C9A1C59106A005979CE = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = ZN7LH9QJ93;
+						TestTargetID = 7E523C841C59106A005979CE;
+					};
+					7E523CA51C59106A005979CE = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = ZN7LH9QJ93;
+						TestTargetID = 7E523C841C59106A005979CE;
+					};
+				};
+			};
+			buildConfigurationList = 7E523C801C59106A005979CE /* Build configuration list for PBXProject "Soleo Local API Demo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7E523C7C1C59106A005979CE;
+			productRefGroup = 7E523C861C59106A005979CE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E523C841C59106A005979CE /* Soleo Local API Demo */,
+				7E523C9A1C59106A005979CE /* SoLocal APITests */,
+				7E523CA51C59106A005979CE /* SoLocal APIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E523C831C59106A005979CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EFD12311CA30B9500D80EA7 /* Assets.xcassets in Resources */,
+				7EE40C4D1C7B62CA00E32C72 /* Localizable.strings in Resources */,
+				7E45AD1E1C62660B0023284B /* Victor_NEW_YORK.gpx in Resources */,
+				7E846F531C8893350046C708 /* async.txt in Resources */,
+				7E846F551C8893350046C708 /* mmdrawercontroller in Resources */,
+				7E846F541C8893350046C708 /* ezloading in Resources */,
+				7E63FD5A1CAD7D1A00EAFB40 /* Main.storyboard in Resources */,
+				7EFD12381CA310EA00D80EA7 /* LaunchScreen.storyboard in Resources */,
+				7E846F561C8893350046C708 /* swiftyjson in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E523C991C59106A005979CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E523CA41C59106A005979CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E523C811C59106A005979CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E523CBB1C591E72005979CE /* TabBarViewController.swift in Sources */,
+				7E45AD1A1C5FE3CE0023284B /* EZLoadingActivity.swift in Sources */,
+				7E45AD161C5FC7FE0023284B /* ListingCollectionViewCell.swift in Sources */,
+				7E523CD51C5920C7005979CE /* MMDrawerBarButtonItem.m in Sources */,
+				7E45AD141C5FC7DC0023284B /* RecentTableViewCell.swift in Sources */,
+				7E45AD0B1C5F94470023284B /* SoleoAPI.swift in Sources */,
+				7E523CD81C5920C7005979CE /* UIViewController+MMDrawerController.m in Sources */,
+				7E0603E51C5BEEE9006ECA0A /* ListingCollectionViewController.swift in Sources */,
+				7E0603CD1C5BBE56006ECA0A /* SwiftyJSON.swift in Sources */,
+				7E45AD201C627A410023284B /* Async.swift in Sources */,
+				7E523C891C59106A005979CE /* AppDelegate.swift in Sources */,
+				7E45AD101C5F96E60023284B /* Search_type.swift in Sources */,
+				7E45AD0C1C5F94470023284B /* APIConnector.swift in Sources */,
+				7E0603CB1C5BBE56006ECA0A /* RecentTableViewController.swift in Sources */,
+				7E523CD61C5920C7005979CE /* MMDrawerController.m in Sources */,
+				818C08A41C6E21A300E6380F /* ListingTableViewCell.swift in Sources */,
+				7E523CDA1C593B03005979CE /* LeftViewController.swift in Sources */,
+				7E846F4B1C888BDF0046C708 /* AboutViewController.swift in Sources */,
+				7E523CDC1C593B27005979CE /* RightViewController.swift in Sources */,
+				7E45AD0D1C5F94470023284B /* Business_type.swift in Sources */,
+				7E0603E71C5BEF7E006ECA0A /* ListingDetailsViewController.swift in Sources */,
+				818C08A21C6E213D00E6380F /* ListingTableViewController.swift in Sources */,
+				7E523C8B1C59106A005979CE /* FirstViewController.swift in Sources */,
+				7E523CD71C5920C7005979CE /* MMDrawerVisualState.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E523C971C59106A005979CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E523CA01C59106A005979CE /* Soleo_Tab_TemplateTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E523CA21C59106A005979CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E523CAB1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E523C9D1C59106A005979CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E523C841C59106A005979CE /* Soleo Local API Demo */;
+			targetProxy = 7E523C9C1C59106A005979CE /* PBXContainerItemProxy */;
+		};
+		7E523CA81C59106A005979CE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E523C841C59106A005979CE /* Soleo Local API Demo */;
+			targetProxy = 7E523CA71C59106A005979CE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7E523C8E1C59106A005979CE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E523C8F1C59106A005979CE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		7E523C931C59106A005979CE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E523C941C59106A005979CE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7EE40C4F1C7B62CA00E32C72 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7EE40C4E1C7B62CA00E32C72 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7E523CAD1C59106A005979CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Soleo Demo API";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E523CAE1C59106A005979CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "Soleo Demo API";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E523CB01C59106A005979CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External",
+					"$(PROJECT_DIR)/Soleo_Tab_Template",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External/LotaData",
+					"$(PROJECT_DIR)/External-Projects/Alamofire/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = Soleo_Tab_Template/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External/LotaData",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.soleo.api.Local-API-DEV-DEMO";
+				PRODUCT_NAME = "Soleo Local API Demo";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Soleo_Tab_Template/External/Soleo-Local-API-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E523CB11C59106A005979CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External",
+					"$(PROJECT_DIR)/Soleo_Tab_Template",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External/LotaData",
+					"$(PROJECT_DIR)/External-Projects/Alamofire/build/Debug-iphoneos",
+				);
+				INFOPLIST_FILE = Soleo_Tab_Template/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/External/LotaData",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.soleo.api.Local-API-DEV-DEMO";
+				PRODUCT_NAME = "Soleo Local API Demo";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Soleo_Tab_Template/External/Soleo-Local-API-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7E523CB31C59106A005979CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Soleo_Tab_TemplateTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateTests";
+				PRODUCT_NAME = "SoLocal API";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoLocal API.app/SoLocal API";
+			};
+			name = Debug;
+		};
+		7E523CB41C59106A005979CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = Soleo_Tab_TemplateTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateTests";
+				PRODUCT_NAME = "SoLocal API";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoLocal API.app/SoLocal API";
+			};
+			name = Release;
+		};
+		7E523CB61C59106A005979CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Soleo_Tab_TemplateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateUITests";
+				PRODUCT_NAME = "SoLocal API";
+				TEST_TARGET_NAME = Soleo_Tab_Template;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		7E523CB71C59106A005979CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = Soleo_Tab_TemplateUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateUITests";
+				PRODUCT_NAME = "SoLocal API";
+				TEST_TARGET_NAME = Soleo_Tab_Template;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E523C801C59106A005979CE /* Build configuration list for PBXProject "Soleo Local API Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E523CAD1C59106A005979CE /* Debug */,
+				7E523CAE1C59106A005979CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E523CAF1C59106A005979CE /* Build configuration list for PBXNativeTarget "Soleo Local API Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E523CB01C59106A005979CE /* Debug */,
+				7E523CB11C59106A005979CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E523CB21C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E523CB31C59106A005979CE /* Debug */,
+				7E523CB41C59106A005979CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E523CB51C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E523CB61C59106A005979CE /* Debug */,
+				7E523CB71C59106A005979CE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E523C7D1C59106A005979CE /* Project object */;
+}

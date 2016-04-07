@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="540" verticalCompressionResistancePriority="540" placeholderIntrinsicWidth="540" placeholderIntrinsicHeight="198" axis="vertical" distribution="equalCentering" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="aaZ-I8-MNH">
+                                <rect key="frame" x="65" y="28" width="470" height="564"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" tag="-1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="lu2-jt-2pO">
+                                        <rect key="frame" x="8" y="8" width="454" height="120"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TextLogo" translatesAutoresizingMaskIntoConstraints="NO" id="zqe-Ov-nno">
+                                        <rect key="frame" x="8" y="179" width="454" height="377"/>
+                                        <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="zqe-Ov-nno" firstAttribute="top" secondItem="lu2-jt-2pO" secondAttribute="bottom" constant="15" id="6zt-2g-fh7"/>
+                                    <constraint firstItem="lu2-jt-2pO" firstAttribute="leading" secondItem="aaZ-I8-MNH" secondAttribute="leading" constant="8" id="9g8-wg-KOl"/>
+                                    <constraint firstItem="lu2-jt-2pO" firstAttribute="top" secondItem="aaZ-I8-MNH" secondAttribute="top" constant="8" id="pmP-da-FYv"/>
+                                    <constraint firstAttribute="trailing" secondItem="lu2-jt-2pO" secondAttribute="trailing" constant="8" id="z7a-0B-B0w"/>
+                                </constraints>
+                                <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="6zt-2g-fh7"/>
+                                    </mask>
+                                </variation>
+                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="HDl-ru-dF4">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="HDl-ru-dF4" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" id="10N-xA-S6L"/>
+                            <constraint firstItem="HDl-ru-dF4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="3MB-jn-Sjz"/>
+                            <constraint firstItem="aaZ-I8-MNH" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="8" id="794-Me-Xin"/>
+                            <constraint firstItem="aaZ-I8-MNH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="8o3-ve-DDf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="aaZ-I8-MNH" secondAttribute="trailing" constant="45" id="ebH-Y3-a3o"/>
+                            <constraint firstAttribute="trailing" secondItem="HDl-ru-dF4" secondAttribute="trailing" id="oOc-vd-nbf"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="aaZ-I8-MNH" secondAttribute="bottom" constant="8" id="rlg-nR-bSQ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="HDl-ru-dF4" secondAttribute="bottom" id="v1a-Wc-SCv"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="HDl-ru-dF4"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="53" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Background" width="320" height="480"/>
+        <image name="Splash" width="120" height="120"/>
+        <image name="TextLogo" width="2302" height="377"/>
+    </resources>
+</document>

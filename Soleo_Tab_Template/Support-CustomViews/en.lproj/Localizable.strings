@@ -1,0 +1,46 @@
+/* 
+  Localizable.strings
+  SoLocal API
+
+  Created by Victor Jimenez Delgado on 2/22/16.
+  Copyright © 2016 Soleo. All rights reserved.
+*/
+
+//KEY = Content;
+
+"LocationErrorTitle" = "Location";
+"LocationErrorMessage" = "Location Services not available";
+"LocationErrorActionMessage" = "Please check the GPS permissions or set the location manually";
+"LocationNotSet" = "Location Not Set. Please check the GPS permissions or set the location manully under Settings";
+"LocationNotSetUI" = "Location Not Set.";
+"WarningTitle" = "Warning";
+"LowMemoryWarning" = "Running out of memory, sorry!";
+"OK" = "OK";
+"Cancel" = "Cancel";
+"CancelFinish" = "Cancel/Finish";
+"Error" = "Error";
+"NoNetworkError" = "No Network at this moment! Please try again later.";
+"Loading" = "Loading, Please wait";
+"ErrorGettingData" = "Error getting business listings! Please try again later.";
+"ErrorGettingaMatch" = "Sorry, found no valid Matching Businesses for your search.";
+"ErrorGettingBusiness" = "Error getting business information! Please try again later.";
+"ErrorGettingNumber" = "Error getting business telephone number! Please try again later.";
+"ErrorSearchNoComplete" = "Not Enought information to complete the Search";
+"Listening" = "Listening...";
+"VoiceRegTitle" = "Voice Recognition";
+"VoiceRegStart" = "Voice Recognition started!";
+"VoiceRegNotAvailable" = "Nuane Mobile Voice recognition not Available. To Enable please check code.";
+"VoiceRegGettingResult" = "Getting Results, Please wait";
+"SearchingFor" = "Searching for:";
+"ActionsTitle" = "Available Actions";
+"ActionsMessage" = "Please select one of the following:";
+"AddToContacts" = "Add Business to Contacts";
+"Call" = "Call Business";
+"CreatedBranding" = "Created by Soleo Communications Local Search API";
+"Favorite" = "Favorite";
+"Delete" = "Delete";
+"NavigateTo" = "Navigate To Business";
+"DistanceTo" = "Distance: ";
+
+"Copyright" = "Copyright © 2016 Soleo. All rights reserved.";
+"External_Project" = "This application uses OpenSource projects for some of its features. Each projects license are bellow: \n";
