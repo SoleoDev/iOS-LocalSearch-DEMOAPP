@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-
+import Soleo_Local_Search_API_Framework
 
 extension String {
     public func toPhoneNumber() -> String {
@@ -111,6 +111,7 @@ class ListingDetailsViewController: UIViewController {
         
         
         APICALL = SoleoAPI()
+        self.APICALL?.apiKey = <#YOUR API KEY #>
         
         if(!business.presented){
         

@@ -12,10 +12,9 @@
 		7E0603DB1C5BC7EC006ECA0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E0603DA1C5BC7EC006ECA0A /* Foundation.framework */; };
 		7E0603E51C5BEEE9006ECA0A /* ListingCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0603E41C5BEEE9006ECA0A /* ListingCollectionViewController.swift */; };
 		7E0603E71C5BEF7E006ECA0A /* ListingDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E0603E61C5BEF7E006ECA0A /* ListingDetailsViewController.swift */; };
-		7E45AD0B1C5F94470023284B /* SoleoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD071C5F94470023284B /* SoleoAPI.swift */; };
-		7E45AD0C1C5F94470023284B /* APIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD081C5F94470023284B /* APIConnector.swift */; };
-		7E45AD0D1C5F94470023284B /* Business_type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD091C5F94470023284B /* Business_type.swift */; };
-		7E45AD101C5F96E60023284B /* Search_type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD0F1C5F96E60023284B /* Search_type.swift */; };
+		7E1D9C571CB6B4FA00192C04 /* Soleo_Local_Search_API_Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1D9C561CB6B4FA00192C04 /* Soleo_Local_Search_API_Framework.framework */; };
+		7E1D9C5A1CB6B55900192C04 /* Async.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1D9C581CB6B55900192C04 /* Async.framework */; };
+		7E1D9C5B1CB6B55900192C04 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1D9C591CB6B55900192C04 /* SwiftyJSON.framework */; };
 		7E45AD141C5FC7DC0023284B /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */; };
 		7E45AD161C5FC7FE0023284B /* ListingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */; };
 		7E45AD1A1C5FE3CE0023284B /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */; };
@@ -88,10 +87,9 @@
 		7E0603DE1C5BC7FE006ECA0A /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7E0603E41C5BEEE9006ECA0A /* ListingCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCollectionViewController.swift; sourceTree = "<group>"; };
 		7E0603E61C5BEF7E006ECA0A /* ListingDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingDetailsViewController.swift; sourceTree = "<group>"; };
-		7E45AD071C5F94470023284B /* SoleoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoleoAPI.swift; sourceTree = "<group>"; };
-		7E45AD081C5F94470023284B /* APIConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConnector.swift; sourceTree = "<group>"; };
-		7E45AD091C5F94470023284B /* Business_type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business_type.swift; sourceTree = "<group>"; };
-		7E45AD0F1C5F96E60023284B /* Search_type.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search_type.swift; sourceTree = "<group>"; };
+		7E1D9C561CB6B4FA00192C04 /* Soleo_Local_Search_API_Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Soleo_Local_Search_API_Framework.framework; sourceTree = "<group>"; };
+		7E1D9C581CB6B55900192C04 /* Async.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Async.framework; sourceTree = "<group>"; };
+		7E1D9C591CB6B55900192C04 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = "<group>"; };
 		7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
@@ -143,8 +141,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EF3AF481C7F5B14004CFBEE /* MapKit.framework in Frameworks */,
+				7E1D9C571CB6B4FA00192C04 /* Soleo_Local_Search_API_Framework.framework in Frameworks */,
+				7E1D9C5B1CB6B55900192C04 /* SwiftyJSON.framework in Frameworks */,
 				7EE40CA91C7BC0CA00E32C72 /* CoreLocation.framework in Frameworks */,
 				7E0603DB1C5BC7EC006ECA0A /* Foundation.framework in Frameworks */,
+				7E1D9C5A1CB6B55900192C04 /* Async.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,14 +196,6 @@
 			name = iOSFrameworks;
 			sourceTree = "<group>";
 		};
-		7E0603EA1C5BF02B006ECA0A /* Data_classes */ = {
-			isa = PBXGroup;
-			children = (
-				7E45AD0F1C5F96E60023284B /* Search_type.swift */,
-			);
-			path = Data_classes;
-			sourceTree = "<group>";
-		};
 		7E0603EB1C5BF042006ECA0A /* Support-CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +235,6 @@
 				7E523CB91C591E02005979CE /* StoryBoards */,
 				7E523CB81C591DF9005979CE /* ViewControllers */,
 				7E523C881C59106A005979CE /* AppDelegate.swift */,
-				7E0603EA1C5BF02B006ECA0A /* Data_classes */,
 				7E523C911C59106A005979CE /* Assets.xcassets */,
 				7E0603EB1C5BF042006ECA0A /* Support-CustomViews */,
 				7E523C961C59106A005979CE /* Info.plist */,
@@ -329,9 +321,9 @@
 		81DFFC061C5EED0C0032ED9F /* Soleo_API_support */ = {
 			isa = PBXGroup;
 			children = (
-				7E45AD071C5F94470023284B /* SoleoAPI.swift */,
-				7E45AD081C5F94470023284B /* APIConnector.swift */,
-				7E45AD091C5F94470023284B /* Business_type.swift */,
+				7E1D9C581CB6B55900192C04 /* Async.framework */,
+				7E1D9C591CB6B55900192C04 /* SwiftyJSON.framework */,
+				7E1D9C561CB6B4FA00192C04 /* Soleo_Local_Search_API_Framework.framework */,
 			);
 			name = Soleo_API_support;
 			path = "Soleo-API";
@@ -483,21 +475,17 @@
 				7E45AD161C5FC7FE0023284B /* ListingCollectionViewCell.swift in Sources */,
 				7E523CD51C5920C7005979CE /* MMDrawerBarButtonItem.m in Sources */,
 				7E45AD141C5FC7DC0023284B /* RecentTableViewCell.swift in Sources */,
-				7E45AD0B1C5F94470023284B /* SoleoAPI.swift in Sources */,
 				7E523CD81C5920C7005979CE /* UIViewController+MMDrawerController.m in Sources */,
 				7E0603E51C5BEEE9006ECA0A /* ListingCollectionViewController.swift in Sources */,
 				7E0603CD1C5BBE56006ECA0A /* SwiftyJSON.swift in Sources */,
 				7E45AD201C627A410023284B /* Async.swift in Sources */,
 				7E523C891C59106A005979CE /* AppDelegate.swift in Sources */,
-				7E45AD101C5F96E60023284B /* Search_type.swift in Sources */,
-				7E45AD0C1C5F94470023284B /* APIConnector.swift in Sources */,
 				7E0603CB1C5BBE56006ECA0A /* RecentTableViewController.swift in Sources */,
 				7E523CD61C5920C7005979CE /* MMDrawerController.m in Sources */,
 				818C08A41C6E21A300E6380F /* ListingTableViewCell.swift in Sources */,
 				7E523CDA1C593B03005979CE /* LeftViewController.swift in Sources */,
 				7E846F4B1C888BDF0046C708 /* AboutViewController.swift in Sources */,
 				7E523CDC1C593B27005979CE /* RightViewController.swift in Sources */,
-				7E45AD0D1C5F94470023284B /* Business_type.swift in Sources */,
 				7E0603E71C5BEF7E006ECA0A /* ListingDetailsViewController.swift in Sources */,
 				818C08A21C6E213D00E6380F /* ListingTableViewController.swift in Sources */,
 				7E523C8B1C59106A005979CE /* FirstViewController.swift in Sources */,
@@ -669,9 +657,10 @@
 					"$(PROJECT_DIR)/Soleo_Tab_Template",
 					"$(PROJECT_DIR)/Soleo_Tab_Template/External/LotaData",
 					"$(PROJECT_DIR)/External-Projects/Alamofire/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/Soleo-API",
 				);
 				INFOPLIST_FILE = Soleo_Tab_Template/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Soleo_Tab_Template/External",
@@ -701,9 +690,10 @@
 					"$(PROJECT_DIR)/Soleo_Tab_Template",
 					"$(PROJECT_DIR)/Soleo_Tab_Template/External/LotaData",
 					"$(PROJECT_DIR)/External-Projects/Alamofire/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Soleo_Tab_Template/Soleo-API",
 				);
 				INFOPLIST_FILE = Soleo_Tab_Template/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Soleo_Tab_Template/External",

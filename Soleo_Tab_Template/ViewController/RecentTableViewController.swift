@@ -9,6 +9,7 @@
 import UIKit
 import SystemConfiguration
 import CoreLocation
+import Soleo_Local_Search_API_Framework
 
 protocol RecentTableViewControllerDelegate{
     
@@ -275,6 +276,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
             
             self.businessList.removeAll()
             self.APICALL = SoleoAPI.init()
+            self.APICALL?.apiKey = <#YOUR API KEY #>
             
             
             //start API GET DATA

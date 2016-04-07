@@ -10,6 +10,8 @@ import UIKit
 import CoreLocation
 import AVFoundation
 import SystemConfiguration
+import Soleo_Local_Search_API_Framework
+
 
 protocol FirstViewControllerDelegate{
     
@@ -18,7 +20,6 @@ protocol FirstViewControllerDelegate{
 }
 
 class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, FirstViewControllerDelegate, UITabBarControllerDelegate {
-    
     
     var LeftSideDelegate : LeftViewControllerDelegate?
     var RecentTableDelegate : RecentTableViewControllerDelegate?
@@ -29,12 +30,12 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     @IBOutlet weak var SearchButton: UIButton!
     
+    
     var LocManager : CLLocationManager?
     
     var AudioSession = AVAudioSession()
     
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
-    
     
     //MARK: SOLEO API Fields
     
@@ -69,7 +70,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     //MARK: Override Functions
     override func viewWillAppear(animated: Bool) {
-    
+     
     }
     
     
@@ -307,7 +308,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     @IBAction func VoiceSearch_Action(sender: AnyObject) {
     
-        
         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                                                       message: NSLocalizedString("VoiceRegNotAvailable", comment: "Error"),
                         preferredStyle: UIAlertControllerStyle.Alert)
@@ -347,6 +347,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                 
                 self.businessList.removeAll()
                 self.APICALL = SoleoAPI.init(location: local!, name: name, category: category, keyword: keyword,city: toSearch_City, state: toSearch_State, postal: toSearch_PostalCode)
+                self.APICALL?.apiKey = <#YOUR API KEY #>
                 
                 if self.toSearchFilter != nil{
                     self.APICALL?.sortType = toSearchFilter!
@@ -550,7 +551,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         print ("Location Error: \(error.description)")
         manager.stopUpdatingLocation();
     }
-    
     
     //MARK: Controller DataFlow and Segue
     

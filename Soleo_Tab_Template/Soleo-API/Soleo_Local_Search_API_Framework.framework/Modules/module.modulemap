@@ -1,0 +1,10 @@
+framework module Soleo_Local_Search_API_Framework {
+  umbrella header "Soleo_Local_Search_API_Framework.h"
+
+  export *
+  module * { export * }
+}
+
+module Soleo_Local_Search_API_Framework.Swift {
+    header "Soleo_Local_Search_API_Framework-Swift.h"
+}

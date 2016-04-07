@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Soleo_Local_Search_API_Framework
 
 protocol LeftViewControllerDelegate{
     

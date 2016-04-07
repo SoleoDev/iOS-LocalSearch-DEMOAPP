@@ -9,6 +9,7 @@
 import UIKit
 import Contacts
 import MapKit
+import Soleo_Local_Search_API_Framework
 
 class ListingTableViewController: UITableViewController, ListingCollectionViewDelegate {
     
@@ -38,6 +39,7 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.APICALL = SoleoAPI()
+        self.APICALL?.apiKey = <#YOUR API KEY #>
         
         self.tableView.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
         

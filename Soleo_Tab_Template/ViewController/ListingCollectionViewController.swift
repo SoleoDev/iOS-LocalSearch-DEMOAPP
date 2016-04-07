@@ -9,7 +9,7 @@
 import UIKit
 import Contacts
 import MapKit
-
+import Soleo_Local_Search_API_Framework
 
 protocol ListingCollectionViewDelegate {
     
@@ -57,6 +57,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
 
         // Do any additional setup after loading the view.
         self.APICALL = SoleoAPI()
+        self.APICALL?.apiKey = <#YOUR API KEY #>
         
     }
 

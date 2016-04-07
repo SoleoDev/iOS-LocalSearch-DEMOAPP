@@ -1,4 +1,4 @@
-# iOS-LocalSearch-DEMOAPP
+# iOS-LocalSearch-DEMOAPP Framework Base Demo App
 Soleo Local Search API for iOS (Swift 2.2) Demo apps.
 
 Contains two branches:

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import Soleo_Local_Search_API_Framework
 
 
 
