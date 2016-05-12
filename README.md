@@ -27,6 +27,10 @@ Download, Open in Xcode.
 Download your API keys for:
 Soleo API developer.soleo.com
 
+*Banches
+master branch is for the File Base SDK demo.
+Framework_Demo branch is for the Framework SDK demo.
+
 * Configuration
 Search for APIKEY and replace with your keys.
 Compile and test...
