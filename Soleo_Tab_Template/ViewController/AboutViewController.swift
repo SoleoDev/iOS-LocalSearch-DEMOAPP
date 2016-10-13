@@ -34,12 +34,12 @@ class AboutViewController: UIViewController {
         
         for name in Licenses{
             
-            if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil)
+            if let path = Bundle.main.path(forResource: name, ofType: nil)
             {
                 do {
-                    LicenseTextView.text.appendContentsOf(" \(name.capitalizedStringWithLocale(nil)) \n")
-                    LicenseTextView.text.appendContentsOf(try String(contentsOfFile:path, encoding: NSUTF8StringEncoding))
-                    LicenseTextView.text.appendContentsOf("\n")
+                    LicenseTextView.text.append(" \(name.capitalized(with: nil)) \n")
+                    LicenseTextView.text.append(try String(contentsOfFile:path, encoding: String.Encoding.utf8))
+                    LicenseTextView.text.append("\n")
                 } catch _ as NSError {
                     print ("Got a error reading the file")
                 }

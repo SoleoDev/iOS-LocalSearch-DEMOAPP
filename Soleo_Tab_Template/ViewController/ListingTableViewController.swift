@@ -25,7 +25,7 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
     //MARK: List
     var list = [Business]()
     
-    var indexPathSelected : NSIndexPath = NSIndexPath()
+    var indexPathSelected : IndexPath = IndexPath()
     
     var userLocation : CLLocation?
 
@@ -52,29 +52,29 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
     }
     
     //MAKR: Delegate Functions
-    func updateBusinees(bussinessToUpdate:Business){
-        list[indexPathSelected.item] = bussinessToUpdate;
+    func updateBusinees(_ bussinessToUpdate:Business){
+        list[(indexPathSelected as NSIndexPath).item] = bussinessToUpdate;
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return list.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         // Configure the cell...
-        let cell : ListingTableViewCell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ListingTableViewCell
+        let cell : ListingTableViewCell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as! ListingTableViewCell
         
-        let currentListing = list[indexPath.item]
+        let currentListing = list[(indexPath as NSIndexPath).item]
         
         if(currentListing.type == Business_Type.Sponsored){
             cell.ListingImage.image = UIImage(named: "sponsored")!
@@ -94,12 +94,12 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         var distance : CLLocationDistance = 0.0
         if currentListing.Location!.coordinate.latitude != 0.0
         {
-            distance = (userLocation?.distanceFromLocation(currentListing.Location!))!
+            distance = (userLocation?.distance(from: currentListing.Location!))!
         }
         
         let df = MKDistanceFormatter()
         
-        let prettyDistance = df.stringFromDistance(distance)
+        let prettyDistance = df.string(fromDistance: distance)
         
         
         
@@ -144,7 +144,7 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
     }
     */
     
-    override func tableView(tableView: UITableView, shouldHighlightRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         indexPathSelected = indexPath
         
         return true
@@ -152,14 +152,14 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
 
     
     //MARK: Segue Actions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowListingDetails"{
             
-            let indexPath: NSIndexPath = self.tableView.indexPathForSelectedRow!
-            let destView2 : ListingDetailsViewController = segue.destinationViewController as! ListingDetailsViewController
+            let indexPath: IndexPath = self.tableView.indexPathForSelectedRow!
+            let destView2 : ListingDetailsViewController = segue.destination as! ListingDetailsViewController
             
-            destView2.business = list[indexPath.item]
+            destView2.business = list[(indexPath as NSIndexPath).item]
             destView2.ListingTableDelegate = self
             
             
@@ -169,34 +169,34 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         
     }
     
-    @IBAction func backToSearch(sender: AnyObject) {
+    @IBAction func backToSearch(_ sender: AnyObject) {
         
         print("empting list")
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         list.removeAll();
         
     }
     
     
     //MARK: Actions
-    @IBAction func LongPressCell(sender: AnyObject) {
+    @IBAction func LongPressCell(_ sender: AnyObject) {
         
         let PopUp = UIAlertController(title: NSLocalizedString("ActionsTitle", comment: ""),
             message: NSLocalizedString("ActionsMessage", comment: ""),
-            preferredStyle: UIAlertControllerStyle.ActionSheet)
+            preferredStyle: UIAlertControllerStyle.actionSheet)
 
         
         PopUp.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""),
-            style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!)in
+            style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!)in
             
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
             self.view.addSubview(activityIndicator)
             activityIndicator.frame = self.view.bounds
             
             activityIndicator.startAnimating()
-            if(!self.list[self.indexPathSelected.item].presented){
+            if(!self.list[(self.indexPathSelected as NSIndexPath).item].presented){
                 
-                self.APICALL!.getCallBacksData(self.list[self.indexPathSelected.item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
+                self.APICALL!.getCallBacksData(self.list[(self.indexPathSelected as NSIndexPath).item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
                     
                     if(error != nil)
                     {
@@ -206,16 +206,16 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                         
                         //Display a warning, Could not get Listing, ERROR OCCURED.
                         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                         
-                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                         
                         alert.addAction(okButton)
                         
                         // Do any additional setup after loading the view.
                         activityIndicator.stopAnimating()
                         
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        self.present(alert, animated: true, completion: nil)
 
                         return
                     }
@@ -231,16 +231,16 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                                 
                                 //Display a warning, Could not get Listing, ERROR OCCURED.
                                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                    message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                    message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                 
-                                let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                 
                                 alert.addAction(okButton)
                                 
                                 // Do any additional setup after loading the view.
                                 activityIndicator.stopAnimating()
                                 
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                self.present(alert, animated: true, completion: nil)
                                 
                                 return
                             }
@@ -257,16 +257,16 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                                         
                                         //Display a warning, Could not get Listing, ERROR OCCURED.
                                         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                         
-                                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                         
                                         alert.addAction(okButton)
                                         
                                         // Do any additional setup after loading the view.
                                         activityIndicator.stopAnimating()
                                         
-                                        self.presentViewController(alert, animated: true, completion: nil)
+                                        self.present(alert, animated: true, completion: nil)
 
                                         return
                                     }
@@ -275,19 +275,19 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                                     
                                     //Time to load the information we just go:
                                     if(returningBusiness != nil){
-                                        self.list[self.indexPathSelected.item] = returningBusiness!
+                                        self.list[(self.indexPathSelected as NSIndexPath).item] = returningBusiness!
                                         
                                         // Do any additional setup after loading the view.
                                         activityIndicator.stopAnimating()
                                         
-                                        let phoneURL = "telprompt://\(self.list[self.indexPathSelected.item].callCompletionNumber!.stringValue)"
+                                        let phoneURL = "telprompt://\(self.list[(self.indexPathSelected as NSIndexPath).item].callCompletionNumber!.stringValue)"
                                         
                                         //This will open a URL with TELPROMT which will allow us to return to the app
                                         //once the user is done.
-                                        UIApplication.sharedApplication().openURL(NSURL(string: phoneURL)!)
+                                        UIApplication.shared.openURL(URL(string: phoneURL)!)
                                         
-                                        self.APICALL?.getCallBacksData(self.list[self.indexPathSelected.item], action: Business_Callback_type.calledCompletionNumber, processCompleter: { (returningBusiness, error) -> Void in
-                                            self.list[self.indexPathSelected.item] = returningBusiness!
+                                        self.APICALL?.getCallBacksData(self.list[(self.indexPathSelected as NSIndexPath).item], action: Business_Callback_type.calledCompletionNumber, processCompleter: { (returningBusiness, error) -> Void in
+                                            self.list[(self.indexPathSelected as NSIndexPath).item] = returningBusiness!
                                         })
                                     }
                                 })
@@ -299,18 +299,18 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         }))
         
         PopUp.addAction(UIAlertAction(title: NSLocalizedString("AddToContacts", comment: ""),
-            style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
             //Going to move forward REALLY QUICK HERE...
             //This might cause issues.
             
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
             self.view.addSubview(activityIndicator)
             activityIndicator.frame = self.view.bounds
             activityIndicator.startAnimating()
             
-            if(!self.list[self.indexPathSelected.item].presented){
+            if(!self.list[(self.indexPathSelected as NSIndexPath).item].presented){
             
-                self.APICALL!.getCallBacksData(self.list[self.indexPathSelected.item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
+                self.APICALL!.getCallBacksData(self.list[(self.indexPathSelected as NSIndexPath).item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
                     
                     if(error != nil)
                     {
@@ -320,16 +320,16 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                         
                         //Display a warning, Could not get Listing, ERROR OCCURED.
                         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                         
-                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                         
                         alert.addAction(okButton)
                         
                         // Do any additional setup after loading the view.
                         activityIndicator.stopAnimating()
                         
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        self.present(alert, animated: true, completion: nil)
 
                         return
                     }
@@ -345,16 +345,16 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                                 
                                 //Display a warning, Could not get Listing, ERROR OCCURED.
                                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                    message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                    message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                 
-                                let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                 
                                 alert.addAction(okButton)
                                 
                                 // Do any additional setup after loading the view.
                                 activityIndicator.stopAnimating()
                                 
-                                self.presentViewController(alert, animated: true, completion: nil)
+                                self.present(alert, animated: true, completion: nil)
 
                                 return
                             }
@@ -370,16 +370,16 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                                         
                                         //Display a warning, Could not get Listing, ERROR OCCURED.
                                         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                         
-                                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                         
                                         alert.addAction(okButton)
                                         
                                         // Do any additional setup after loading the view.
                                         activityIndicator.stopAnimating()
                                         
-                                        self.presentViewController(alert, animated: true, completion: nil)
+                                        self.present(alert, animated: true, completion: nil)
 
                                         return
                                     }
@@ -391,7 +391,7 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                                     if(returningBusiness != nil){
                                         
                                         self.makeandSaveContact(returningBusiness!)
-                                        self.list[self.indexPathSelected.item] = returningBusiness!
+                                        self.list[(self.indexPathSelected as NSIndexPath).item] = returningBusiness!
                                         
                                     }
                                     
@@ -405,15 +405,15 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
             }
         }))
         
-        if(self.list[self.indexPathSelected.item].address != "")
+        if(self.list[(self.indexPathSelected as NSIndexPath).item].address != "")
         {
             PopUp.addAction(UIAlertAction(title: NSLocalizedString("NavigateTo", comment: ""),
-                style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+                style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
                     //Leave blank for that the view goes aways automaticly.
                     
                     let geoCoder = CLGeocoder();
                     
-                    geoCoder.geocodeAddressString("\(self.list[self.indexPathSelected.item].address) \(self.list[self.indexPathSelected.item].city),\(self.list[self.indexPathSelected.item].state)", completionHandler: {(places, error) -> Void in
+                    geoCoder.geocodeAddressString("\(self.list[(self.indexPathSelected as NSIndexPath).item].address) \(self.list[(self.indexPathSelected as NSIndexPath).item].city),\(self.list[(self.indexPathSelected as NSIndexPath).item].state)", completionHandler: {(places, error) -> Void in
                         
                         if (error != nil)
                         {
@@ -430,19 +430,19 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                         // Open the item in Maps, specifying the map region to display.
                         
                         let mapKit = MKMapItem.init(placemark: loca)
-                        mapKit.name = self.list[self.indexPathSelected.item].name
+                        mapKit.name = self.list[(self.indexPathSelected as NSIndexPath).item].name
                         
                         
-                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(MKCoordinate: (self.userLocation?.coordinate)!) ]
+                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(mkCoordinate: (self.userLocation?.coordinate)!) ]
                         
-                        mapKit.openInMapsWithLaunchOptions(launchOptions)
+                        mapKit.openInMaps(launchOptions: launchOptions)
                         
                     })
             }))
         }
         
         PopUp.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
-            style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) in
+            style: UIAlertActionStyle.cancel, handler: { (action: UIAlertAction!) in
             //Leave blank for that the view goes aways automaticly.
             
         }))
@@ -451,23 +451,23 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         //For iPad support
         if PopUp.popoverPresentationController != nil{
             
-            let cell = self.tableView.cellForRowAtIndexPath(indexPathSelected)
+            let cell = self.tableView.cellForRow(at: indexPathSelected)
             PopUp.popoverPresentationController?.sourceView = cell
             PopUp.popoverPresentationController?.sourceRect = (cell?.bounds)!//CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height, 1.0, 1.0);
         }
         
         
-        self.presentViewController(PopUp, animated: true, completion:nil)
+        self.present(PopUp, animated: true, completion:nil)
         
     }
     
     //MARK: Support Function:
-    func makeandSaveContact(businessToAdd: Business)
+    func makeandSaveContact(_ businessToAdd: Business)
     {
         // Creating a mutable object to add to the contact
         let contact = CNMutableContact()
         
-        contact.imageData = NSData() // The profile picture as a NSData object
+        contact.imageData = Data() // The profile picture as a NSData object
         
         contact.organizationName = businessToAdd.name
         contact.givenName = businessToAdd.name
@@ -489,8 +489,8 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         do{
             let store = CNContactStore()
             let saveRequest = CNSaveRequest()
-            saveRequest.addContact(contact, toContainerWithIdentifier:nil)
-            try store.executeSaveRequest(saveRequest)
+            saveRequest.add(contact, toContainerWithIdentifier:nil)
+            try store.execute(saveRequest)
         }
         catch let error as NSError{
             print("Got a error while saving the contact: \(contact)" , error)

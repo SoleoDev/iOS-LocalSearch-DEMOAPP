@@ -15,8 +15,8 @@ import Soleo_Local_Search_API_Framework
 
 protocol FirstViewControllerDelegate{
     
-    func passData(name: String, data: Any)
-    func passSearchList(list : [Search_type])
+    func passData(_ name: String, data: Any)
+    func passSearchList(_ list : [Search_type])
 }
 
 class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, FirstViewControllerDelegate, UITabBarControllerDelegate {
@@ -69,7 +69,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
 
     
     //MARK: Override Functions
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
      
     }
     
@@ -82,13 +82,13 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         //Setup the TextField
         SearchField.delegate = self
         
-        let VoiceSearchMinibutton = UIButton(type: UIButtonType.Custom)
-        VoiceSearchMinibutton.frame = CGRectMake(0, 0, 16, 16)
-        VoiceSearchMinibutton.setImage(UIImage(named:"Mic2"),forState: UIControlState.Normal)
-        VoiceSearchMinibutton.addTarget(self, action: #selector(FirstViewController.VoiceSearch_Action(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        let VoiceSearchMinibutton = UIButton(type: UIButtonType.custom)
+        VoiceSearchMinibutton.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+        VoiceSearchMinibutton.setImage(UIImage(named:"Mic2"),for: UIControlState())
+        VoiceSearchMinibutton.addTarget(self, action: #selector(FirstViewController.VoiceSearch_Action(_:)), for: UIControlEvents.touchUpInside)
         
         SearchField.leftView = VoiceSearchMinibutton;
-        SearchField.leftViewMode = UITextFieldViewMode.Always;
+        SearchField.leftViewMode = UITextFieldViewMode.always;
         
         if(CLLocationManager.locationServicesEnabled())
         {
@@ -96,7 +96,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
             LocManager?.desiredAccuracy = CLLocationAccuracy.init(500)
             if( LocManager != nil)
             {
-                if(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse)
+                if(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse)
                 {
                     LocManager!.delegate = self
                     //Not going to be moving.
@@ -118,17 +118,17 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         {
             //Location Servces are not available, Display a warning.
             let PopUp = UIAlertController(title: NSLocalizedString("LocationErrorTitle", comment: "Local"),
-                message: NSLocalizedString("LocationErrorMessage", comment: "Local"), preferredStyle: UIAlertControllerStyle.Alert)
+                message: NSLocalizedString("LocationErrorMessage", comment: "Local"), preferredStyle: UIAlertControllerStyle.alert)
             
             PopUp.addAction(UIAlertAction(title: NSLocalizedString("LocationErrorActionMessage", comment: "Local"),
-                style: UIAlertActionStyle.Default, handler: nil))
+                style: UIAlertActionStyle.default, handler: nil))
             
-            presentViewController(PopUp, animated: true, completion:nil)
+            present(PopUp, animated: true, completion:nil)
 
         }
         
         //MIC request
-        if (AudioSession.respondsToSelector(#selector(AVAudioSession.requestRecordPermission(_:)))) {
+        if (AudioSession.responds(to: #selector(AVAudioSession.requestRecordPermission(_:)))) {
             AVAudioSession.sharedInstance().requestRecordPermission({(granted: Bool)-> Void in
                 //surround the permissions with Do-Catch
                 do{
@@ -137,7 +137,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                         _ = try self.AudioSession.setCategory(AVAudioSessionCategoryAudioProcessing)
                         _ = try self.AudioSession.setActive(true)
                     } else{
-                        self.Mic_Button.userInteractionEnabled = false
+                        self.Mic_Button.isUserInteractionEnabled = false
                     }
                 }
                 catch let error as NSError
@@ -152,7 +152,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         //Set Delegate for LeftData passing
         
         // Do any additional setup after loading the view.
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let LeftView = (appDelegate.drawerContainer?.leftDrawerViewController as! UINavigationController).topViewController as! LeftViewControllerDelegate
         
@@ -168,15 +168,15 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        let PopUp = UIAlertController(title: NSLocalizedString("Warning", comment: "MemWarning"), message: NSLocalizedString("LowMemoryWarning", comment: "MemWarning"), preferredStyle: UIAlertControllerStyle.Alert);
-        PopUp.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default,handler: { (action: UIAlertAction!) in
+        let PopUp = UIAlertController(title: NSLocalizedString("Warning", comment: "MemWarning"), message: NSLocalizedString("LowMemoryWarning", comment: "MemWarning"), preferredStyle: UIAlertControllerStyle.alert);
+        PopUp.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default,handler: { (action: UIAlertAction!) in
             //TODO: Hadle memory warning loginc after this.
         }))
         
-        presentViewController(PopUp, animated: true, completion: nil)
+        present(PopUp, animated: true, completion: nil)
     }
     
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         
         let name =  (viewController as! UINavigationController).topViewController?.title
         
@@ -199,7 +199,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
      - parameter name: Name in String format
      - parameter data: Data as AnyObject
      */
-    func passData(name: String, data: Any)
+    func passData(_ name: String, data: Any)
     {
         //DO STUFF WITH DATA COMING IN
         print(name,data)
@@ -297,7 +297,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
     
     
-    func passSearchList(list: [Search_type]) {
+    func passSearchList(_ list: [Search_type]) {
         self.searchList = list
     }
     
@@ -306,35 +306,35 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     //MARK: Actions
     
-    @IBAction func VoiceSearch_Action(sender: AnyObject) {
+    @IBAction func VoiceSearch_Action(_ sender: AnyObject) {
     
         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                                                       message: NSLocalizedString("VoiceRegNotAvailable", comment: "Error"),
-                        preferredStyle: UIAlertControllerStyle.Alert)
+                        preferredStyle: UIAlertControllerStyle.alert)
         
                     let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""),
-                        style: UIAlertActionStyle.Cancel, handler: nil)
+                        style: UIAlertActionStyle.cancel, handler: nil)
         
                     alert.addAction(okButton)
         
-                    presentViewController(alert, animated: true, completion: nil)
+                    present(alert, animated: true, completion: nil)
         
         
     }
     
-    @IBAction func Start_Search(sender: AnyObject) {
+    @IBAction func Start_Search(_ sender: AnyObject) {
         
         if(keyword.isEmpty)
         {
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                 message: NSLocalizedString("ErrorSearchNoComplete", comment: "Error"),
-                preferredStyle: UIAlertControllerStyle.Alert)
+                preferredStyle: UIAlertControllerStyle.alert)
             
-            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             
             alert.addAction(okButton)
             
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
         else
         {
@@ -376,24 +376,24 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                         {
                             //Display a warning, NO DATA, ERROR OCCURED.
                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                message: error?.userInfo.values.first as? String, preferredStyle: UIAlertControllerStyle.Alert)
+                                message: error?.userInfo.values.first as? String, preferredStyle: UIAlertControllerStyle.alert)
                             
-                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                             
                             alert.addAction(okButton)
                             
-                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.present(alert, animated: true, completion: nil)
                         }
                         else{
                             //Display a warning, NO DATA, ERROR OCCURED.
                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                message: NSLocalizedString("ErrorGettingData", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                message: NSLocalizedString("ErrorGettingData", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                             
-                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                             
                             alert.addAction(okButton)
                             
-                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.present(alert, animated: true, completion: nil)
                         }
                         
                     }
@@ -417,7 +417,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                     }.main {
                         if (self.APICALL?.dataError == nil)
                         {
-                            self.performSegueWithIdentifier(self.SeguesForData, sender:self)
+                            self.performSegue(withIdentifier: self.SeguesForData, sender:self)
                             EZLoadingActivity.hide(success: true, animated: true)
                             self.searchList.append((self.APICALL?.SearchRequest)!)
                         }
@@ -430,14 +430,14 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                 //Display a warning, NO NETWORK.
                 let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                     message: NSLocalizedString("NoNetworkError", comment: "Error"),
-                    preferredStyle: UIAlertControllerStyle.Alert)
+                    preferredStyle: UIAlertControllerStyle.alert)
                 
                 let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""),
-                    style: UIAlertActionStyle.Cancel, handler: nil)
+                    style: UIAlertActionStyle.cancel, handler: nil)
                 
                 alert.addAction(okButton)
                 
-                presentViewController(alert, animated: true, completion: nil)
+                present(alert, animated: true, completion: nil)
             }
 
             
@@ -447,16 +447,16 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
     
     
-    @IBAction func showLeft_Menu(sender: AnyObject) {
+    @IBAction func showLeft_Menu(_ sender: AnyObject) {
         
-      let appDelegate =  UIApplication.sharedApplication().delegate as! AppDelegate
+      let appDelegate =  UIApplication.shared.delegate as! AppDelegate
         
-        appDelegate.drawerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+        appDelegate.drawerContainer?.toggle(MMDrawerSide.left, animated: true, completion: nil)
         
 
     }
     
-    @IBAction func ChangeDisplaySelection(sender: UISwitch) {
+    @IBAction func ChangeDisplaySelection(_ sender: UISwitch) {
         
         //Change how we are going to send the data...
         print("HEY WE GOT HERE")
@@ -464,16 +464,16 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     //MARK: UITextDelegate Functions
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool
     {
         if(local?.coordinate.latitude == 0.0 && local?.coordinate.longitude == 0.0) || (local == nil) && !HaveLocation{
             let PopUp = UIAlertController(title:  NSLocalizedString("LocationErrorTitle", comment: "Local"),
                 message: NSLocalizedString("LocationNotSet", comment: "Local"),
-                preferredStyle: UIAlertControllerStyle.Alert)
+                preferredStyle: UIAlertControllerStyle.alert)
             
-            PopUp.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
+            PopUp.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.default, handler: nil))
             
-            presentViewController(PopUp, animated: true, completion:nil)
+            present(PopUp, animated: true, completion:nil)
             
             return false
         }
@@ -481,7 +481,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         return true
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         
         SearchField.resignFirstResponder();
         
@@ -491,7 +491,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
 
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         if (!SearchField.text!.isEmpty)
         {
@@ -501,7 +501,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
     
     //MARK: Location Functions
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let location = locations.last
         
@@ -547,19 +547,19 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
 
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print ("Location Error: \(error.description)")
         manager.stopUpdatingLocation();
     }
     
     //MARK: Controller DataFlow and Segue
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("Passing Information")
         if  SeguesForData == "ShowCollectionSegue"{
             if segue.identifier == SeguesForData{
                 
-                let NavController = segue.destinationViewController as! UINavigationController
+                let NavController = segue.destination as! UINavigationController
                 
                 let destView : ListingCollectionViewController = NavController.topViewController as!  ListingCollectionViewController
                 
@@ -573,7 +573,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         {
             if segue.identifier == SeguesForData{
                 
-                let NavController = segue.destinationViewController as! UINavigationController
+                let NavController = segue.destination as! UINavigationController
                 
                 let destView : ListingTableViewController  = NavController.topViewController as!  ListingTableViewController
                 
@@ -591,10 +591,10 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     func connectedToNetwork() -> Bool {
         
         var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
-        guard let defaultRouteReachability = withUnsafePointer(&zeroAddress, {
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
             SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
         }) else {
             return false
@@ -605,7 +605,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
             return false
         }
         
-        let isReachable = flags.contains(.Reachable)
+        let isReachable = flags.contains(.reachable)
         //let needsConnection = flags.contains(.ConnectionRequired)
         return (isReachable)
     }

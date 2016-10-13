@@ -11,7 +11,7 @@ import Soleo_Local_Search_API_Framework
 
 protocol LeftViewControllerDelegate{
     
-    func passToLeft(name: String, data: Any)
+    func passToLeft(_ name: String, data: Any)
     
 }
 
@@ -45,7 +45,7 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         let FirstView = ((appDelegate.drawerContainer?.centerViewController as! UITabBarController).viewControllers![0] as! UINavigationController).topViewController as! FirstViewController
         
@@ -58,17 +58,17 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         //Send the data to the center View
-        passDataForward(ViewType.keys.first!, dataToSend: ViewType.values.first!)
+        passDataForward(ViewType.keys.first!, dataToSend: ViewType.values.first! as AnyObject)
         
         if ( location_auto != nil  && !location_auto!){
             if location_city != nil{
-                passDataForward("NewCity", dataToSend: location_city!)
+                passDataForward("NewCity", dataToSend: location_city! as AnyObject)
             }
             
             if location_state != nil{
-                passDataForward("NewState", dataToSend: location_state!)
+                passDataForward("NewState", dataToSend: location_state! as AnyObject)
             }
             
         }
@@ -77,28 +77,28 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
         
         if( radius_toSearch != nil)
         {
-            passDataForward("Radius", dataToSend: radius_toSearch!)
+            passDataForward("Radius", dataToSend: radius_toSearch! as AnyObject)
         }
 
         
     }
     
     //MARK: DELEGATION
-    func passDataForward(dataType: String, dataToSend: AnyObject)
+    func passDataForward(_ dataType: String, dataToSend: AnyObject)
     {
         FirstViewdelegate?.passData(dataType, data: dataToSend)
     }
     
-    func passToLeft(name: String, data: Any) {
+    func passToLeft(_ name: String, data: Any) {
         
         //GET THE CODE FORM THE RIGHT VIEW CONTROLLER
         
         if name == "Location"
         {
-            let dataConverted = data as! AnyObject
-            location_auto = dataConverted.valueForKey("AutoLocal")?.boolValue
-            location_city = dataConverted.valueForKey("city") as? String
-            location_state = dataConverted.valueForKey("state") as? String
+            let dataConverted = data as AnyObject
+            location_auto = (dataConverted.value(forKey: "AutoLocal") as AnyObject).boolValue
+            location_city = dataConverted.value(forKey: "city") as? String
+            location_state = dataConverted.value(forKey: "state") as? String
         }
         
         if name == "FilterSelection"
@@ -108,10 +108,10 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
         
         if name == "NewLocation"
         {
-            let dataConverted = data as! AnyObject
+            let dataConverted = data as AnyObject
             location_auto = false
-            location_city = dataConverted.valueForKey("City") as? String
-            location_state = dataConverted.valueForKey("State") as? String
+            location_city = dataConverted.value(forKey: "City") as? String
+            location_state = dataConverted.value(forKey: "State") as? String
         }
         
         if name == "Radius"
@@ -121,8 +121,8 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
         
     }
     
-    @IBAction func SettingsSelection(sender: UITapGestureRecognizer) {
-        self.performSegueWithIdentifier("ShowSettingMenu", sender:self)
+    @IBAction func SettingsSelection(_ sender: UITapGestureRecognizer) {
+        self.performSegue(withIdentifier: "ShowSettingMenu", sender:self)
     }
     
 
@@ -138,9 +138,9 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
     
     
     //MARK: Actionn
-    @IBAction func SwitchAction(sender: UISwitch) {
+    @IBAction func SwitchAction(_ sender: UISwitch) {
     
-        if sender.on{
+        if sender.isOn{
             ViewType = ["CollectionViewType":"Collection"]
         }
         else{
@@ -153,9 +153,9 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
     
     
     //MARK: Segue Overrides
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowLocations"{
-         let destination = segue.destinationViewController as! RightViewController
+         let destination = segue.destination as! RightViewController
             destination.LocationAutomatic = self.location_auto
             destination.City = self.location_city
             destination.State = self.location_state
