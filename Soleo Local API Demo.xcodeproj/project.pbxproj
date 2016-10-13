@@ -18,12 +18,9 @@
 		7E45AD141C5FC7DC0023284B /* RecentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */; };
 		7E45AD161C5FC7FE0023284B /* ListingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */; };
 		7E45AD1A1C5FE3CE0023284B /* EZLoadingActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */; };
-		7E45AD1E1C62660B0023284B /* Victor_NEW_YORK.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 7E45AD1D1C62660B0023284B /* Victor_NEW_YORK.gpx */; };
 		7E45AD201C627A410023284B /* Async.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E45AD1F1C627A410023284B /* Async.swift */; };
 		7E523C891C59106A005979CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523C881C59106A005979CE /* AppDelegate.swift */; };
 		7E523C8B1C59106A005979CE /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523C8A1C59106A005979CE /* FirstViewController.swift */; };
-		7E523CA01C59106A005979CE /* Soleo_Tab_TemplateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523C9F1C59106A005979CE /* Soleo_Tab_TemplateTests.swift */; };
-		7E523CAB1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CAA1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift */; };
 		7E523CBB1C591E72005979CE /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CBA1C591E72005979CE /* TabBarViewController.swift */; };
 		7E523CD51C5920C7005979CE /* MMDrawerBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CCD1C5920C7005979CE /* MMDrawerBarButtonItem.m */; };
 		7E523CD61C5920C7005979CE /* MMDrawerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E523CCF1C5920C7005979CE /* MMDrawerController.m */; };
@@ -58,23 +55,6 @@
 		};
 /* End PBXBuildRule section */
 
-/* Begin PBXContainerItemProxy section */
-		7E523C9C1C59106A005979CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7E523C7D1C59106A005979CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E523C841C59106A005979CE;
-			remoteInfo = Soleo_Tab_Template;
-		};
-		7E523CA71C59106A005979CE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7E523C7D1C59106A005979CE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7E523C841C59106A005979CE;
-			remoteInfo = Soleo_Tab_Template;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		7E0603C81C5BBE56006ECA0A /* RecentTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTableViewController.swift; sourceTree = "<group>"; };
 		7E0603CA1C5BBE56006ECA0A /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -93,7 +73,6 @@
 		7E45AD131C5FC7DC0023284B /* RecentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentTableViewCell.swift; sourceTree = "<group>"; };
 		7E45AD151C5FC7FE0023284B /* ListingCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCollectionViewCell.swift; sourceTree = "<group>"; };
 		7E45AD191C5FE3CE0023284B /* EZLoadingActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EZLoadingActivity.swift; sourceTree = "<group>"; };
-		7E45AD1D1C62660B0023284B /* Victor_NEW_YORK.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Victor_NEW_YORK.gpx; sourceTree = "<group>"; };
 		7E45AD1F1C627A410023284B /* Async.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Async.swift; sourceTree = "<group>"; };
 		7E523C851C59106A005979CE /* Soleo Local API Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Soleo Local API Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E523C881C59106A005979CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -102,10 +81,8 @@
 		7E523C911C59106A005979CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E523C941C59106A005979CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E523C961C59106A005979CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E523C9B1C59106A005979CE /* SoLocal API.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SoLocal API.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E523C9F1C59106A005979CE /* Soleo_Tab_TemplateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soleo_Tab_TemplateTests.swift; sourceTree = "<group>"; };
 		7E523CA11C59106A005979CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E523CA61C59106A005979CE /* SoLocal API.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SoLocal API.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E523CAA1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Soleo_Tab_TemplateUITests.swift; sourceTree = "<group>"; };
 		7E523CAC1C59106A005979CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E523CBA1C591E72005979CE /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -146,20 +123,6 @@
 				7EE40CA91C7BC0CA00E32C72 /* CoreLocation.framework in Frameworks */,
 				7E0603DB1C5BC7EC006ECA0A /* Foundation.framework in Frameworks */,
 				7E1D9C5A1CB6B55900192C04 /* Async.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E523C981C59106A005979CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E523CA31C59106A005979CE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +170,6 @@
 		7E523C7C1C59106A005979CE = {
 			isa = PBXGroup;
 			children = (
-				7E45AD1D1C62660B0023284B /* Victor_NEW_YORK.gpx */,
 				7E0603D11C5BC768006ECA0A /* iOSFrameworks */,
 				7E523C871C59106A005979CE /* Soleo-Local-API */,
 				7E523C9E1C59106A005979CE /* Soleo_Tab_TemplateTests */,
@@ -220,8 +182,6 @@
 			isa = PBXGroup;
 			children = (
 				7E523C851C59106A005979CE /* Soleo Local API Demo.app */,
-				7E523C9B1C59106A005979CE /* SoLocal API.xctest */,
-				7E523CA61C59106A005979CE /* SoLocal API.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -350,42 +310,6 @@
 			productReference = 7E523C851C59106A005979CE /* Soleo Local API Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7E523C9A1C59106A005979CE /* SoLocal APITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7E523CB21C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APITests" */;
-			buildPhases = (
-				7E523C971C59106A005979CE /* Sources */,
-				7E523C981C59106A005979CE /* Frameworks */,
-				7E523C991C59106A005979CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7E523C9D1C59106A005979CE /* PBXTargetDependency */,
-			);
-			name = "SoLocal APITests";
-			productName = Soleo_Tab_TemplateTests;
-			productReference = 7E523C9B1C59106A005979CE /* SoLocal API.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		7E523CA51C59106A005979CE /* SoLocal APIUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7E523CB51C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APIUITests" */;
-			buildPhases = (
-				7E523CA21C59106A005979CE /* Sources */,
-				7E523CA31C59106A005979CE /* Frameworks */,
-				7E523CA41C59106A005979CE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7E523CA81C59106A005979CE /* PBXTargetDependency */,
-			);
-			name = "SoLocal APIUITests";
-			productName = Soleo_Tab_TemplateUITests;
-			productReference = 7E523CA61C59106A005979CE /* SoLocal API.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -393,22 +317,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Soleo Communications";
 				TargetAttributes = {
 					7E523C841C59106A005979CE = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = LUUGWCA2S4;
-					};
-					7E523C9A1C59106A005979CE = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = ZN7LH9QJ93;
-						TestTargetID = 7E523C841C59106A005979CE;
-					};
-					7E523CA51C59106A005979CE = {
-						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = ZN7LH9QJ93;
-						TestTargetID = 7E523C841C59106A005979CE;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -426,8 +340,6 @@
 			projectRoot = "";
 			targets = (
 				7E523C841C59106A005979CE /* Soleo Local API Demo */,
-				7E523C9A1C59106A005979CE /* SoLocal APITests */,
-				7E523CA51C59106A005979CE /* SoLocal APIUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -439,27 +351,12 @@
 			files = (
 				7EFD12311CA30B9500D80EA7 /* Assets.xcassets in Resources */,
 				7EE40C4D1C7B62CA00E32C72 /* Localizable.strings in Resources */,
-				7E45AD1E1C62660B0023284B /* Victor_NEW_YORK.gpx in Resources */,
 				7E846F531C8893350046C708 /* async.txt in Resources */,
 				7E846F551C8893350046C708 /* mmdrawercontroller in Resources */,
 				7E846F541C8893350046C708 /* ezloading in Resources */,
 				7E63FD5A1CAD7D1A00EAFB40 /* Main.storyboard in Resources */,
 				7EFD12381CA310EA00D80EA7 /* LaunchScreen.storyboard in Resources */,
 				7E846F561C8893350046C708 /* swiftyjson in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E523C991C59106A005979CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E523CA41C59106A005979CE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,36 +390,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7E523C971C59106A005979CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7E523CA01C59106A005979CE /* Soleo_Tab_TemplateTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7E523CA21C59106A005979CE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7E523CAB1C59106A005979CE /* Soleo_Tab_TemplateUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7E523C9D1C59106A005979CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7E523C841C59106A005979CE /* Soleo Local API Demo */;
-			targetProxy = 7E523C9C1C59106A005979CE /* PBXContainerItemProxy */;
-		};
-		7E523CA81C59106A005979CE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7E523C841C59106A005979CE /* Soleo Local API Demo */;
-			targetProxy = 7E523CA71C59106A005979CE /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7E523C8E1C59106A005979CE /* Main.storyboard */ = {
@@ -566,8 +434,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -614,8 +484,10 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -637,6 +509,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "Soleo Demo API";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -650,6 +523,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -671,6 +545,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Soleo_Tab_Template/External/Soleo-Local-API-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -683,6 +558,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -703,55 +579,8 @@
 				PRODUCT_NAME = "Soleo Local API Demo";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$SRCROOT/Soleo_Tab_Template/External/Soleo-Local-API-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		7E523CB31C59106A005979CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = Soleo_Tab_TemplateTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateTests";
-				PRODUCT_NAME = "SoLocal API";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoLocal API.app/SoLocal API";
-			};
-			name = Debug;
-		};
-		7E523CB41C59106A005979CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = Soleo_Tab_TemplateTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateTests";
-				PRODUCT_NAME = "SoLocal API";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SoLocal API.app/SoLocal API";
-			};
-			name = Release;
-		};
-		7E523CB61C59106A005979CE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = Soleo_Tab_TemplateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateUITests";
-				PRODUCT_NAME = "SoLocal API";
-				TEST_TARGET_NAME = Soleo_Tab_Template;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		7E523CB71C59106A005979CE /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = Soleo_Tab_TemplateUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "soleo.api.Soleo-Tab-TemplateUITests";
-				PRODUCT_NAME = "SoLocal API";
-				TEST_TARGET_NAME = Soleo_Tab_Template;
-				USES_XCTRUNNER = YES;
 			};
 			name = Release;
 		};
@@ -772,24 +601,6 @@
 			buildConfigurations = (
 				7E523CB01C59106A005979CE /* Debug */,
 				7E523CB11C59106A005979CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7E523CB21C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7E523CB31C59106A005979CE /* Debug */,
-				7E523CB41C59106A005979CE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7E523CB51C59106A005979CE /* Build configuration list for PBXNativeTarget "SoLocal APIUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7E523CB61C59106A005979CE /* Debug */,
-				7E523CB71C59106A005979CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
