@@ -32,20 +32,31 @@ import CoreLocation
  */
 public struct Business {
     
-    var name = ""
-    var address = ""
-    var city = ""
-    var state = ""
-    var zip = ""
-    var type : Business_Type = Business_Type.Sponsored
-    var monetization : Business_Monetization = Business_Monetization(completion_action: Business_Action_Type.Presented, criteria: 30, value: 0.0019, validUntil: NSDate())
-    var cost : Business_Cost_to_developer = Business_Cost_to_developer(action: Business_Action_Type.Presented, value: 0.01, validUntil: NSDate())
-    var callbacks : [Business_Callback_Definition] = [Business_Callback_Definition]()
-    var presented : Bool = false
-    var displayNumber : CNPhoneNumber?
-    var callCompletionNumber : CNPhoneNumber?
-    var extraDetails : [String] = [String]()
-    var Location : CLLocation?
+    public var name = ""
+    public var address = ""
+    public var city = ""
+    public var state = ""
+    public var zip = ""
+    public var distance = 0.0
+    public var type : Business_Type = Business_Type.Sponsored
+    public var monetization : Business_Monetization = Business_Monetization(completion_action: Business_Action_Type.Presented, criteria: "0", value: 0.0000, validUntil: Date())
+    public var cost : Business_Cost_to_developer = Business_Cost_to_developer(action: Business_Action_Type.Presented, value: 0.00, validUntil: Date())
+    public var callbacks : [Business_Callback_Definition] = [Business_Callback_Definition]()
+    public var presented : Bool = false
+    public var displayNumber : CNPhoneNumber?
+    public var callCompletionNumber : CNPhoneNumber?
+    public var Location : CLLocation?
+    public var Category : String?
+    public var details : BusinessDetails?
+    
+    /**
+     Empty Initializer
+     
+     - returns: A new Empty Business
+     */
+    public init() {
+        
+    }
 }
 
 /**
@@ -57,8 +68,8 @@ public struct Business {
  - Sponsored: Sponsored Business Listing
  */
 public enum Business_Type : String {
-    case Organic = "Organic"
-    case Sponsored = "Sponsored"
+    case Organic = "organic"
+    case Sponsored = "sponsored"
 }
 
 /**
@@ -69,13 +80,16 @@ public enum Business_Type : String {
  - Presented:        Business most be presented to the user
  - Called:           A call must be made
  - CompletionNumber: A call number must be request, no call is necesary
+ - Event: A specific event has to happen on the call. Ex: Apointment made, new contract
  */
 public enum Business_Action_Type : String
 {
-    case Selected = "Selected"
-    case Presented = "Presented"
-    case Called = "CALLED"
-    case CompletionNumber = "CompletionNumberRequest"
+    case None = "none"
+    case Selected = "selected"
+    case Presented = "presented"
+    case Called = "called"
+    case CompletionNumber = "completionnumberrequest"
+    case Event = "event" // NOT REALLY A TYPE, but let leave it there.
 }
 
 /**
@@ -97,22 +111,23 @@ public enum Business_Action_Type : String
  */
 public enum Business_Request_Type : String
 {
-    case Organic = "Organic"
-    case Selected = "Selected"
-    case Presented = "Presented"
-    case Called = "Called"
-    case Organic_Selected = "Organic,Selected"
-    case Organic_Present = "Organic,Presented"
-    case Organi_Called = "Organic,Called"
-    case Selected_Presented = "Selected,Presented"
-    case Selected_Called = "Selected,Called"
-    case Presented_Called = "Presented,Called"
-    case Organic_Selected_Presented = "Organic,Presented,Selected"
-    case Selected_Presented_Called = "Presented,Selected,Called"
-    case ALL = "Organic,Presented,Selected,Called"
-    
-    
+    case Organic = "organic"
+    case Selected = "selected"
+    case Presented = "presented"
+    case Called = "called"
+    case Organic_Selected = "organic,selected"
+    case Organic_Present = "organic,presented"
+    case Organi_Called = "organic,called"
+    case Selected_Presented = "selected,presented"
+    case Selected_Called = "selected,called"
+    case Presented_Called = "presented,called"
+    case Organic_Selected_Presented = "organic,presented,selected"
+    case Selected_Presented_Called = "selected,presented,called"
+    case Organic_Presented_Called = "organic,presented,called"
+    case Organic_Selected_Called = "organic,selected,called"
+    case ALL = "organic,presented,selected,called"
 }
+
 
 /**
  Business Listing Sort request
@@ -125,32 +140,40 @@ public enum Business_Sort_Type : String {
     case value = "value"
     case distance = "distance"
     case both = "value_distance"
+    case nameCategoryDistance = "name_category_distance"
 }
 
 
 /**
  *  Parameters for developer money making scheama
+ - completion_action:    Business_Action_Type for this Ad to be monetize
+ - criteria: Actual Criteria to be consider successfull, it can be either a number of seconds for a called to last or a type of event like Appointment booked.
+ - value:     Actual monitazation value
+ - validUntil:     Time until this ad is valid for monetization and for futher data request.
  */
 public struct Business_Monetization
 {
     
-    var completion_action : Business_Action_Type //Action type to complete monetization
-    var criteria : Int
-    var value : Double
-    var validUntil : NSDate
+    public var completion_action : Business_Action_Type //Action type to complete monetization
+    public var criteria : String
+    public var value : Double
+    public var validUntil : Date
     
 }
 
 /**
  *  Cost criteria is for Organic listings ONLY
+ - action:    Action that will incure a cost
+ - value: Cost of the listing
+ - validUntil:     Time until this listing is valid for futher data request.
  */
 public struct Business_Cost_to_developer
 {
-    var action : Business_Action_Type //Action type
+    public var action : Business_Action_Type //Action type
     
-    var value : Double
+    public var value : Double
     
-    var validUntil : NSDate
+    public var validUntil : Date
 }
 
 /**
@@ -161,11 +184,11 @@ public struct Business_Cost_to_developer
  */
 public struct Business_Callback_Definition
 {
-    var rel : String
+    public var rel : String
     
-    var referenceURL : String
+    public var referenceURL : String
     
-    var callbackMethod : String
+    public var callbackMethod : String
 }
 
 /**
@@ -192,3 +215,26 @@ public enum Business_Callback_type : String
     case calledCompletionNumber = "urn:soleo:businesses:calledcompletionnumber"
 }
 
+/**
+ Business Details structure
+
+ - isOpen: Representation if the business is open.
+	-It might be unknow if the system cannot decipher the open hours.
+ - TimeZone:  Hours timezone of the listing
+ - ParseableHours: String hours in parsealable format for developer custom work
+ - DisplayHours: Formated Hour string to use as is.
+ - descriptors:  Listing descritions types
+ */
+public struct BusinessDetails
+{
+    public var isOpen : String
+    
+    public var TimeZone : String
+    
+    public var ParseableHours : String
+    
+    public var DisplayHours : [String]
+    
+    public var descriptors : [String]
+    
+}

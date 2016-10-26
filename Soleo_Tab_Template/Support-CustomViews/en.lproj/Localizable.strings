@@ -11,7 +11,7 @@
 "LocationErrorTitle" = "Location";
 "LocationErrorMessage" = "Location Services not available";
 "LocationErrorActionMessage" = "Please check the GPS permissions or set the location manually";
-"LocationNotSet" = "Location Not Set. Please check the GPS permissions or set the location manully under Settings";
+"LocationNotSet" = "Location Not Set. Please check the GPS permissions or set the location manually under Settings";
 "LocationNotSetUI" = "Location Not Set.";
 "WarningTitle" = "Warning";
 "LowMemoryWarning" = "Running out of memory, sorry!";
@@ -25,11 +25,11 @@
 "ErrorGettingaMatch" = "Sorry, found no valid Matching Businesses for your search.";
 "ErrorGettingBusiness" = "Error getting business information! Please try again later.";
 "ErrorGettingNumber" = "Error getting business telephone number! Please try again later.";
-"ErrorSearchNoComplete" = "Not Enought information to complete the Search";
+"ErrorSearchNoComplete" = "Not Enough information to complete the Search";
 "Listening" = "Listening...";
 "VoiceRegTitle" = "Voice Recognition";
 "VoiceRegStart" = "Voice Recognition started!";
-"VoiceRegNotAvailable" = "Nuane Mobile Voice recognition not Available. To Enable please check code.";
+"VoiceRegNotAvailable" = "Nuance Mobile Voice recognition not Available. To Enable please check the code.";
 "VoiceRegGettingResult" = "Getting Results, Please wait";
 "SearchingFor" = "Searching for:";
 "ActionsTitle" = "Available Actions";

@@ -40,7 +40,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
     
     let pickerData_Sort = ["Both",
-        "Distance", "Ad Revenue"]
+        "Distance", "Ad Revenue", "Name, Category, Distance"]
     
     let pickerData_Radius = ["1 mi",
         "5 mi", "10 mi", "25 mi", "50 mi"]
@@ -55,7 +55,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         FiltersPickerView.dataSource = self
         NewLocation = false;
         
-        if ((LocationAutomatic?.boolValue) != nil) {
+        if ((LocationAutomatic) != nil) {
             image_Current_location.image = UIImage(named: "GPS")
             Current_Location.text = "\(City!), \(State!)"
         }
@@ -73,7 +73,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
          //Send the data to the Left View
         //passDataTotheLeft()
         
@@ -114,11 +114,11 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     
     //MARK: PickerView DataSource
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(_pickerView: UIPickerView,
+    func pickerView(_ _pickerView: UIPickerView,
         numberOfRowsInComponent component: Int) -> Int{
             
             if _pickerView.tag == 0{
@@ -131,7 +131,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     //MARK: PickerDelegate
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 0{
             return pickerData_Sort[row]
         }
@@ -140,7 +140,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         if pickerView.tag == 0{
             switch pickerData_Sort[row]
@@ -157,6 +157,9 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                     FilterType = Business_Sort_Type.both
                     break
                 
+                case "Name, Category, Distance":
+                    FilterType = Business_Sort_Type.nameCategoryDistance
+                
                 default:
                     FilterType = Business_Sort_Type.both
 
@@ -166,7 +169,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
             
             Radius = pickerData_Radius[row]
             
-            Radius!.removeRange(pickerData_Radius[row].endIndex.advancedBy(-3)..<pickerData_Radius[row].endIndex)
+            Radius!.removeSubrange(pickerData_Radius[row].characters.index(pickerData_Radius[row].endIndex, offsetBy: -3)..<pickerData_Radius[row].endIndex)
             
         }
         
@@ -174,13 +177,13 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     //MARK Unwind from Location selection
-    @IBAction func saveNewLocationDetail(segue:UIStoryboardSegue) {
+    @IBAction func saveNewLocationDetail(_ segue:UIStoryboardSegue) {
         
-        let MasterView = segue.sourceViewController as UIViewController
+        let MasterView = segue.source as UIViewController
         
-        City = (MasterView.view.subviews[MasterView.view.subviews.indexOf({$0.tag == 1})!] as! UITextField).text
+        City = (MasterView.view.subviews[MasterView.view.subviews.index(where: {$0.tag == 1})!] as! UITextField).text
         
-        State = (MasterView.view.subviews[MasterView.view.subviews.indexOf({$0.tag == 2})!] as! UITextField).text
+        State = (MasterView.view.subviews[MasterView.view.subviews.index(where: {$0.tag == 2})!] as! UITextField).text
         
         NewLocation = true
         

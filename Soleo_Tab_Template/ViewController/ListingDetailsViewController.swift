@@ -12,7 +12,7 @@ import MapKit
 
 extension String {
     public func toPhoneNumber() -> String {
-        return stringByReplacingOccurrencesOfString("(\\d{3})(\\d{3})(\\d+)", withString: "($1) $2-$3", options: .RegularExpressionSearch, range: nil)
+        return replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
     }
 }
 
@@ -38,6 +38,8 @@ class ListingDetailsViewController: UIViewController {
     
     @IBOutlet weak var ListingType: UILabel!
     
+    @IBOutlet weak var ListingCategory: UILabel!
+    
     @IBOutlet weak var Callback_button: UIButton!
     
     @IBOutlet weak var BackButton: UIBarButtonItem!
@@ -50,7 +52,7 @@ class ListingDetailsViewController: UIViewController {
     
     
     //MARK: internal Fields
-    private var APICALL : SoleoAPI?
+    fileprivate var APICALL : SoleoAPI?
     
     var business = Business()
     
@@ -82,12 +84,12 @@ class ListingDetailsViewController: UIViewController {
         
         //NOTE, this must be nested in order to aggregate the results.
         
-        Extra_info.scrollEnabled = true
-        ScrollView.scrollEnabled = true
+        Extra_info.isScrollEnabled = true
+        ScrollView.isScrollEnabled = true
         ScrollView.contentSize = CGSize(width: 400, height: 694)
         Extra_info.clearsOnInsertion = true
         
-        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
         self.view.addSubview(activityIndicator)
         activityIndicator.frame = self.view.bounds
         activityIndicator.startAnimating()
@@ -98,6 +100,7 @@ class ListingDetailsViewController: UIViewController {
         ListingCity.text = business.city
         ListingState.text = business.state
         ListingZipCode.text = business.zip
+        ListingCategory.text = business.Category
         
         if(business.type == Business_Type.Sponsored){
             ListingImage.image = UIImage(named: "sponsored")!
@@ -124,13 +127,13 @@ class ListingDetailsViewController: UIViewController {
                     
                     //Display a warning, Could not get Listing, ERROR OCCURED.
                     let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                        message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                        message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                     
                     alert.addAction(okButton)
                     
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
 
                     
                     return
@@ -146,13 +149,13 @@ class ListingDetailsViewController: UIViewController {
                         
                         //Display a warning, Could not get Listing, ERROR OCCURED.
                         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                            message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                         
-                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                        let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                         
                         alert.addAction(okButton)
                         
-                        self.presentViewController(alert, animated: true, completion: nil)
+                        self.present(alert, animated: true, completion: nil)
                         
                         return
                     }
@@ -168,13 +171,13 @@ class ListingDetailsViewController: UIViewController {
                             
                             //Display a warning, Could not get Listing, ERROR OCCURED.
                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                             
-                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                             
                             alert.addAction(okButton)
                             
-                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.present(alert, animated: true, completion: nil)
                             
                             return
                         }
@@ -186,9 +189,24 @@ class ListingDetailsViewController: UIViewController {
                             self.business = returningBusiness!
                             self.ListinnDisplayNumber.text =    (self.business.displayNumber!.stringValue).toPhoneNumber()
                             self.ListingMonetizationNumber.text = (self.business.callCompletionNumber!.stringValue).toPhoneNumber()
-                            for var details in self.business.extraDetails{
-                                details.appendContentsOf("-- \n")
-                                self.Extra_info.text?.appendContentsOf(details)
+                            if self.business.details != nil
+                            {
+                                self.Extra_info.text?.append("Is Busines Open: \(self.business.details?.isOpen) \n")
+                                
+                                self.Extra_info.text?.append("Is Busines Timezone: \(self.business.details?.TimeZone) \n")
+                                self.Extra_info.text?.append("Is Busines Pasealable Hours: \(self.business.details!.ParseableHours) \n")
+                                
+                                self.Extra_info.text?.append("Display Hours:-- \n")
+                                for var hours in (self.business.details?.DisplayHours)!{
+                                    self.Extra_info.text?.append(hours)
+                                }
+
+                                
+                                self.Extra_info.text?.append("Descriptors:-- \n")
+                                for var details in (self.business.details?.descriptors)!{
+                                    self.Extra_info.text?.append(details)
+                                }
+
                             }
                             
                             
@@ -207,10 +225,26 @@ class ListingDetailsViewController: UIViewController {
             
             ListinnDisplayNumber.text =    (business.displayNumber!.stringValue).toPhoneNumber()
             ListingMonetizationNumber.text = (business.callCompletionNumber!.stringValue).toPhoneNumber()
-            for var details in business.extraDetails{
-                details.appendContentsOf("-- \n")
-                Extra_info.text?.appendContentsOf(details)
+            if self.business.details != nil
+            {
+                self.Extra_info.text?.append("Is Busines Open: \(self.business.details?.isOpen) \n")
+                
+                self.Extra_info.text?.append("Is Busines Timezone: \(self.business.details?.TimeZone) \n")
+                self.Extra_info.text?.append("Is Busines Pasealable Hours: \(self.business.details?.ParseableHours) \n")
+                
+                self.Extra_info.text?.append("Display Hours:-- \n")
+                for var hours in (self.business.details?.DisplayHours)!{
+                    self.Extra_info.text?.append(hours)
+                }
+                
+                
+                self.Extra_info.text?.append("Descriptors:-- \n")
+                for var details in (self.business.details?.descriptors)!{
+                    self.Extra_info.text?.append(details)
+                }
+                
             }
+
             
             // Do any additional setup after loading the view.
             activityIndicator.stopAnimating()
@@ -229,7 +263,7 @@ class ListingDetailsViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
@@ -261,14 +295,14 @@ class ListingDetailsViewController: UIViewController {
 
     
     //MARK: Actions
-    @IBAction func doCallBack(sender: UIButton) {
+    @IBAction func doCallBack(_ sender: UIButton) {
         
         if business.callCompletionNumber != nil{
             let phoneURL = "telprompt://\(business.callCompletionNumber!.stringValue)"
             
             //This will open a URL with TELPROMT which will allow us to return to the app
             //once the user is done.
-            UIApplication.sharedApplication().openURL(NSURL(string: phoneURL)!)
+            UIApplication.shared.openURL(URL(string: phoneURL)!)
             if(business.type == Business_Type.Sponsored)
             {
                 APICALL?.getCallBacksData(business, action: Business_Callback_type.calledCompletionNumber, processCompleter: { (returningBusiness, error) -> Void in
@@ -310,13 +344,13 @@ class ListingDetailsViewController: UIViewController {
             
             //Display a warning, Could not get Listing, ERROR OCCURED.
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                          message: NSLocalizedString("ErrorGettingNumber", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                          message: NSLocalizedString("ErrorGettingNumber", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
             
-            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
             
             alert.addAction(okButton)
             
-            self.presentViewController(alert, animated: true, completion: nil)
+            self.present(alert, animated: true, completion: nil)
             
         }
         
@@ -324,7 +358,7 @@ class ListingDetailsViewController: UIViewController {
     }
     
     
-    @IBAction func backButtonPress(sender: AnyObject) {
+    @IBAction func backButtonPress(_ sender: AnyObject) {
         
         if ListingTableDelegate != nil{
             ListingTableDelegate!.updateBusinees(business)
@@ -333,11 +367,11 @@ class ListingDetailsViewController: UIViewController {
             ListingCollectionDelegate!.updateBusinees(business)
         }
         
-        self.navigationController?.popViewControllerAnimated(true)
+        self.navigationController?.popViewController(animated: true)
     }
     
     
-    @IBAction func NavigateTo(sender: UIButton) {
+    @IBAction func NavigateTo(_ sender: UIButton) {
         //Code to add the navigation to function
 //        self.performSegueWithIdentifier("GoToBusiness", sender: self)
         
@@ -365,7 +399,7 @@ class ListingDetailsViewController: UIViewController {
             
             let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
             
-            mapKit.openInMapsWithLaunchOptions(launchOptions)
+            mapKit.openInMaps(launchOptions: launchOptions)
 
         })
 

@@ -20,4 +20,7 @@ class ListingCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var ListingAddress: UILabel!
     
     @IBOutlet weak var ListingDistance: UILabel!
+    
+    @IBOutlet weak var ListingCategory: UILabel!
+    
 }

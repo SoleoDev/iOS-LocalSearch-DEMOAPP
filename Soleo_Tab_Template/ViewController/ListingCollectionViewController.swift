@@ -13,7 +13,7 @@ import MapKit
 
 protocol ListingCollectionViewDelegate {
     
-    func updateBusinees(bussinessToUpdate:Business)
+    func updateBusinees(_ bussinessToUpdate:Business)
     
 }
 
@@ -36,7 +36,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
     //MARK: List
     var list = [Business]()
     
-    var indexPathSelected : NSIndexPath = NSIndexPath()
+    var indexPathSelected : IndexPath = IndexPath()
     
     var userLocation : CLLocation?
 
@@ -51,7 +51,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         //UI code does not like to re-register if doing it in StoryBoard. Only for programatic items
 //        self.collectionView!.registerClass(ListingCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        self.ListingCollectionView.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
+        self.ListingCollectionView.backgroundColor = UIColor(patternImage: UIImage(named: "background_pattern")!)
         
         self.ListingCollectionView.reloadData()
 
@@ -66,8 +66,8 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
     }
     
     //MAKR: Delegate Functions
-    func updateBusinees(bussinessToUpdate:Business){
-        list[indexPathSelected.item] = bussinessToUpdate;
+    func updateBusinees(_ bussinessToUpdate:Business){
+        list[(indexPathSelected as NSIndexPath).item] = bussinessToUpdate;
     }
     
 
@@ -82,23 +82,23 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
     */
 
     // MARK: UICollectionViewDataSource
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         //We only want 1 Business Listing per View.
         return 1
     }
 
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         return list.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
         
-        let cell : ListingCollectionViewCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ListingCollectionViewCell
+        let cell : ListingCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ListingCollectionViewCell
         
-        let currentListing = list[indexPath.item]
+        let currentListing = list[(indexPath as NSIndexPath).item]
         
         if(currentListing.type == Business_Type.Sponsored){
             cell.ListingImage.image = UIImage(named: "sponsored")!
@@ -109,22 +109,27 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         
         cell.ListingName.text = currentListing.name
         cell.ListingType.text = currentListing.type.rawValue
-        cell.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "Background"))
+        cell.ListingCategory.text = currentListing.Category
+        
+        cell.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
         cell.ListingAddress.text = "\(currentListing.address) \(currentListing.city) \(currentListing.state), \(currentListing.zip) "
         
-        var distance : CLLocationDistance = 0.0
         if currentListing.Location!.coordinate.latitude != 0.0
         {
-            distance = (userLocation?.distanceFromLocation(currentListing.Location!))!
+            
+            let df = MKDistanceFormatter()
+            df.units = .imperialWithYards
+            df.unitStyle = .abbreviated
+            
+            let prettyDistance = df.string(fromDistance: currentListing.distance * 1600)
+            
+            cell.ListingDistance.text = NSLocalizedString("DistanceTo", comment: "Distance") + "\(prettyDistance)"
+            
         }
-        
-        let df = MKDistanceFormatter()
-        
-        let prettyDistance = df.stringFromDistance(distance)
-        
-        
-        
-        cell.ListingDistance.text = NSLocalizedString("DistanceTo", comment: "Distance") + "\(prettyDistance)"
+        else if (currentListing.address.isEmpty)
+        {
+            cell.ListingDistance.text = "National"
+        }
     
         return cell
     }
@@ -133,7 +138,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
 
     
     // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
         
         indexPathSelected = indexPath
         
@@ -164,14 +169,14 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
     */
     
     //MARK: Segue Actions
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "ShowListingDetails"{
             
-            let indexPath: NSIndexPath = self.ListingCollectionView.indexPathsForSelectedItems()![0]
-            let destView2 : ListingDetailsViewController = segue.destinationViewController as! ListingDetailsViewController
+            let indexPath: IndexPath = self.ListingCollectionView.indexPathsForSelectedItems![0]
+            let destView2 : ListingDetailsViewController = segue.destination as! ListingDetailsViewController
             
-            destView2.business = list[indexPath.item]
+            destView2.business = list[(indexPath as NSIndexPath).item]
             destView2.ListingCollectionDelegate = self
 
             
@@ -183,39 +188,39 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
 
     
     //MARK: Exit Actions
-    @IBAction func back_to_Search(sender: AnyObject) {
+    @IBAction func back_to_Search(_ sender: AnyObject) {
         print("empting list")
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         list.removeAll();
     }
     
     //Used for returning from results view
-    @IBAction func unwindToViewController(segue:UIStoryboardSegue) {
+    @IBAction func unwindToViewController(_ segue:UIStoryboardSegue) {
         print("Going to unwind")
         print("empting list")
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
         list.removeAll()
     }
     
     
     //MARK: Actions
-    @IBAction func LongPress(sender: AnyObject) {
+    @IBAction func LongPress(_ sender: AnyObject) {
     
         let PopUp = UIAlertController(title: NSLocalizedString("ActionsTitle", comment: ""),
             message: NSLocalizedString("ActionsMessage", comment: ""),
-            preferredStyle: UIAlertControllerStyle.ActionSheet)
+            preferredStyle: UIAlertControllerStyle.actionSheet)
         
         PopUp.addAction(UIAlertAction(title: NSLocalizedString("Call", comment: ""),
-            style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!)in
+            style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!)in
             
-            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+            let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
             self.view.addSubview(activityIndicator)
             activityIndicator.frame = self.view.bounds
 
             activityIndicator.startAnimating()
-            if(!self.list[self.indexPathSelected.item].presented){
+            if(!self.list[(self.indexPathSelected as NSIndexPath).item].presented){
                     
-                    self.APICALL!.getCallBacksData(self.list[self.indexPathSelected.item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
+                    self.APICALL!.getCallBacksData(self.list[(self.indexPathSelected as NSIndexPath).item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
                         
                         if(error != nil)
                         {
@@ -225,16 +230,16 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                             
                             //Display a warning, Could not get Listing, ERROR OCCURED.
                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                             
-                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                             
                             alert.addAction(okButton)
                             
                             // Do any additional setup after loading the view.
                             activityIndicator.stopAnimating()
                             
-                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.present(alert, animated: true, completion: nil)
                             
                             return
                         }
@@ -250,16 +255,16 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                                     
                                     //Display a warning, Could not get Listing, ERROR OCCURED.
                                     let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                        message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                        message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                     
-                                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                     
                                     alert.addAction(okButton)
                                     
                                     // Do any additional setup after loading the view.
                                     activityIndicator.stopAnimating()
                                     
-                                    self.presentViewController(alert, animated: true, completion: nil)
+                                    self.present(alert, animated: true, completion: nil)
                                     
                                     return
                                 }
@@ -276,16 +281,16 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                                             
                                             //Display a warning, Could not get Listing, ERROR OCCURED.
                                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                             
-                                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                             
                                             alert.addAction(okButton)
                                             
                                             // Do any additional setup after loading the view.
                                             activityIndicator.stopAnimating()
                                             
-                                            self.presentViewController(alert, animated: true, completion: nil)
+                                            self.present(alert, animated: true, completion: nil)
                                             
                                             return
                                         }
@@ -294,19 +299,19 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                                         
                                         //Time to load the information we just go:
                                         if(returningBusiness != nil){
-                                            self.list[self.indexPathSelected.item] = returningBusiness!
+                                            self.list[(self.indexPathSelected as NSIndexPath).item] = returningBusiness!
                                             
                                             // Do any additional setup after loading the view.
                                             activityIndicator.stopAnimating()
                                             
-                                            let phoneURL = "telprompt://\(self.list[self.indexPathSelected.item].callCompletionNumber!.stringValue)"
+                                            let phoneURL = "telprompt://\(self.list[(self.indexPathSelected as NSIndexPath).item].callCompletionNumber!.stringValue)"
                                             
                                             //This will open a URL with TELPROMT which will allow us to return to the app
                                             //once the user is done.
-                                            UIApplication.sharedApplication().openURL(NSURL(string: phoneURL)!)
+                                            UIApplication.shared.openURL(URL(string: phoneURL)!)
                                             
-                                            self.APICALL?.getCallBacksData(self.list[self.indexPathSelected.item], action: Business_Callback_type.calledCompletionNumber, processCompleter: { (returningBusiness, error) -> Void in
-                                                self.list[self.indexPathSelected.item] = returningBusiness!
+                                            self.APICALL?.getCallBacksData(self.list[(self.indexPathSelected as NSIndexPath).item], action: Business_Callback_type.calledCompletionNumber, processCompleter: { (returningBusiness, error) -> Void in
+                                                self.list[(self.indexPathSelected as NSIndexPath).item] = returningBusiness!
                                             })
                                         }
                                     })
@@ -318,18 +323,18 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         }))
         
         PopUp.addAction(UIAlertAction(title: NSLocalizedString("AddToContacts", comment: ""),
-            style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+            style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
                 //Going to move forward REALLY QUICK HERE...
                 //This might cause issues.
                 
-                let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+                let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
                 self.view.addSubview(activityIndicator)
                 activityIndicator.frame = self.view.bounds
                 activityIndicator.startAnimating()
                 
-                if(!self.list[self.indexPathSelected.item].presented){
+                if(!self.list[(self.indexPathSelected as NSIndexPath).item].presented){
                     
-                    self.APICALL!.getCallBacksData(self.list[self.indexPathSelected.item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
+                    self.APICALL!.getCallBacksData(self.list[(self.indexPathSelected as NSIndexPath).item], action: Business_Callback_type.present, processCompleter: { (returningBusiness, error) -> Void in
                         
                         if(error != nil)
                         {
@@ -339,16 +344,16 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                             
                             //Display a warning, Could not get Listing, ERROR OCCURED.
                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                             
-                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                             
                             alert.addAction(okButton)
                             
                             // Do any additional setup after loading the view.
                             activityIndicator.stopAnimating()
                             
-                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.present(alert, animated: true, completion: nil)
                             
                             return
                         }
@@ -364,16 +369,16 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                                     
                                     //Display a warning, Could not get Listing, ERROR OCCURED.
                                     let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                        message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                        message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                     
-                                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                     
                                     alert.addAction(okButton)
                                     
                                     // Do any additional setup after loading the view.
                                     activityIndicator.stopAnimating()
                                     
-                                    self.presentViewController(alert, animated: true, completion: nil)
+                                    self.present(alert, animated: true, completion: nil)
                                     
                                     return
                                 }
@@ -389,16 +394,16 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                                             
                                             //Display a warning, Could not get Listing, ERROR OCCURED.
                                             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                                                message: NSLocalizedString("ErrorGettingBusiness", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                                             
-                                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                                            let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                                             
                                             alert.addAction(okButton)
                                             
                                             // Do any additional setup after loading the view.
                                             activityIndicator.stopAnimating()
                                             
-                                            self.presentViewController(alert, animated: true, completion: nil)
+                                            self.present(alert, animated: true, completion: nil)
                                             
                                             return
                                         }
@@ -410,7 +415,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                                         if(returningBusiness != nil){
                                             
                                             self.makeandSaveContact(returningBusiness!)
-                                            self.list[self.indexPathSelected.item] = returningBusiness!
+                                            self.list[(self.indexPathSelected as NSIndexPath).item] = returningBusiness!
                                             
                                         }
                                         
@@ -424,15 +429,15 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                 }
         }))
         
-        if(self.list[self.indexPathSelected.item].address != "")
+        if(self.list[(self.indexPathSelected as NSIndexPath).item].address != "")
         {
             PopUp.addAction(UIAlertAction(title: NSLocalizedString("NavigateTo", comment: ""),
-                style: UIAlertActionStyle.Default, handler: { (action: UIAlertAction!) in
+                style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in
                     
                     
                     let geoCoder = CLGeocoder();
                     
-                    geoCoder.geocodeAddressString("\(self.list[self.indexPathSelected.item].address) \(self.list[self.indexPathSelected.item].city),\(self.list[self.indexPathSelected.item].state)", completionHandler: {(places, error) -> Void in
+                    geoCoder.geocodeAddressString("\(self.list[(self.indexPathSelected as NSIndexPath).item].address) \(self.list[(self.indexPathSelected as NSIndexPath).item].city),\(self.list[(self.indexPathSelected as NSIndexPath).item].state)", completionHandler: {(places, error) -> Void in
                         
                         if (error != nil)
                         {
@@ -449,13 +454,13 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                         // Open the item in Maps, specifying the map region to display.
                         
                         let mapKit = MKMapItem.init(placemark: loca)
-                        mapKit.name = self.list[self.indexPathSelected.item].name
+                        mapKit.name = self.list[(self.indexPathSelected as NSIndexPath).item].name
 
                     
-                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(MKCoordinate: (self.userLocation?.coordinate)!) ]
+                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(mkCoordinate: (self.userLocation?.coordinate)!) ] as [String : Any]
                         
                         
-                        mapKit.openInMapsWithLaunchOptions(launchOptions)
+                        mapKit.openInMaps(launchOptions: launchOptions)
                         
                     })
                     
@@ -463,7 +468,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         }
         
         PopUp.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: ""),
-            style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) in
+            style: UIAlertActionStyle.cancel, handler: { (action: UIAlertAction!) in
              //Leave blank for that the view goes aways automaticly.
             
         }))
@@ -471,31 +476,31 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         //For iPad support
         if PopUp.popoverPresentationController != nil{
             
-            let cell = self.collectionView?.cellForItemAtIndexPath(indexPathSelected)
+            let cell = self.collectionView?.cellForItem(at: indexPathSelected)
             PopUp.popoverPresentationController?.sourceView = cell
             PopUp.popoverPresentationController?.sourceRect = (cell?.bounds)!//CGRectMake(self.view.bounds.size.width / 2.0, self.view.bounds.size.height, 1.0, 1.0);
         }
 
         
-        self.presentViewController(PopUp, animated: true, completion:nil)
+        self.present(PopUp, animated: true, completion:nil)
         
     }
     
-    @IBAction func show_LeftMenu(sender: AnyObject) {
+    @IBAction func show_LeftMenu(_ sender: AnyObject) {
         
-        let appDelegate =  UIApplication.sharedApplication().delegate as! AppDelegate
+        let appDelegate =  UIApplication.shared.delegate as! AppDelegate
         
-        appDelegate.drawerContainer?.toggleDrawerSide(MMDrawerSide.Left, animated: true, completion: nil)
+        appDelegate.drawerContainer?.toggle(MMDrawerSide.left, animated: true, completion: nil)
         
     }
     
     //MARK: Support Function:
-    func makeandSaveContact(businessToAdd: Business)
+    func makeandSaveContact(_ businessToAdd: Business)
     {
         // Creating a mutable object to add to the contact
         let contact = CNMutableContact()
         
-        contact.imageData = NSData() // The profile picture as a NSData object
+        contact.imageData = Data() // The profile picture as a NSData object
         
         contact.organizationName = businessToAdd.name
         contact.givenName = businessToAdd.name
@@ -517,8 +522,8 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         do{
         let store = CNContactStore()
         let saveRequest = CNSaveRequest()
-        saveRequest.addContact(contact, toContainerWithIdentifier:nil)
-        try store.executeSaveRequest(saveRequest)
+        saveRequest.add(contact, toContainerWithIdentifier:nil)
+        try store.execute(saveRequest)
         }
         catch let error as NSError{
             print("Got a error while saving the contact: \(contact)" , error)
@@ -531,7 +536,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
 //MARK: EXTENSIONS
 extension ListingCollectionViewController : UICollectionViewDelegateFlowLayout {
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
             //If the listing is different change this insect value.
         
@@ -539,9 +544,9 @@ extension ListingCollectionViewController : UICollectionViewDelegateFlowLayout {
     }
     
     
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        insetForSectionAt section: Int) -> UIEdgeInsets {
             return sectionInsets
     }
 }

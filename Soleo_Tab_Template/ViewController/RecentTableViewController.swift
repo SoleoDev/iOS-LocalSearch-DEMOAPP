@@ -9,13 +9,14 @@
 import UIKit
 import SystemConfiguration
 import CoreLocation
+import EZLoadingActivity
 
 protocol RecentTableViewControllerDelegate{
     
-    func passSearches(newList: [Search_type])
-    func passSegueDisplay(segueToDisplay : String)
-    func passFirstViewDelegate(delegate : FirstViewControllerDelegate)
-    func passLocation(location : CLLocation)
+    func passSearches(_ newList: [Search_type])
+    func passSegueDisplay(_ segueToDisplay : String)
+    func passFirstViewDelegate(_ delegate : FirstViewControllerDelegate)
+    func passLocation(_ location : CLLocation)
 }
 
 class RecentTableViewController: UITableViewController, RecentTableViewControllerDelegate {
@@ -52,12 +53,12 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         //Setting up edit
-        navigationItem.rightBarButtonItem = editButtonItem()
+        navigationItem.rightBarButtonItem = editButtonItem
         
-        self.tableView.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
+        self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background_pattern")!)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         saveSearches()
     }
 
@@ -67,25 +68,25 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     }
 
     // MARK: - Table DataSource
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return searchListToDisplay.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier, forIndexPath: indexPath) as! RecentTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier, for: indexPath) as! RecentTableViewCell
 
         // Configure the cell...
-        cell.Search_name.text = searchListToDisplay[indexPath.item].search_name
-        cell.ValidTime.text = "Valid until: \(searchListToDisplay[indexPath.item].search_time)"
+        cell.Search_name.text = searchListToDisplay[(indexPath as NSIndexPath).item].search_name
+        cell.ValidTime.text = "Valid until: \(searchListToDisplay[(indexPath as NSIndexPath).item].search_time)"
         
-        if searchListToDisplay[indexPath.item].favority.boolValue{
+        if searchListToDisplay[(indexPath as NSIndexPath).item].favority{
             
             cell.FavButton.image = UIImage(named: "ic_favorite_white_36pt")
         }
@@ -94,50 +95,50 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         }
         
         
-        cell.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "Cellsbackground"))
+        cell.backgroundColor = UIColor(patternImage: UIImage(named: "Cellsbackground")!)
 
         return cell
     }
     
     
     //MARK: TableView Delegate
-    override func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        return UITableViewCellEditingStyle.Delete
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return UITableViewCellEditingStyle.delete
     }
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         var newActions = [UITableViewRowAction]()
         
         
-        let FavAction = UITableViewRowAction(style: .Normal, title: (NSLocalizedString("Favorite", comment: "action"))) { (rowAction, indexPath) -> Void in
+        let FavAction = UITableViewRowAction(style: .normal, title: (NSLocalizedString("Favorite", comment: "action"))) { (rowAction, indexPath) -> Void in
             
             print("Adding to Fav")
-            let Updated = self.searchListToDisplay[indexPath.item]
+            let Updated = self.searchListToDisplay[(indexPath as NSIndexPath).item]
             
-            if Updated.favority.boolValue{
+            if Updated.favority{
                 Updated.favority = false
             }
             else{
                 Updated.favority = true
             }
             
-            self.searchListToDisplay[indexPath.item] = Updated
+            self.searchListToDisplay[(indexPath as NSIndexPath).item] = Updated
             tableView.endEditing(true)
             
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .None)
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
         
-        FavAction.backgroundColor = UIColor.yellowColor()
+        FavAction.backgroundColor = UIColor.yellow
         
-        let deleteAction = UITableViewRowAction(style: .Destructive, title: (NSLocalizedString("Delete", comment: "action"))) { (rowAction, indexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: .default, title: (NSLocalizedString("Delete", comment: "action"))) { (rowAction, indexPath) -> Void in
                 print("Deleting")
 
-                self.searchListToDisplay.removeAtIndex(indexPath.item)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                self.searchListToDisplay.remove(at: (indexPath as NSIndexPath).item)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             
         }
         
-        deleteAction.backgroundColor = UIColor.redColor()
+        deleteAction.backgroundColor = UIColor.red
         
         
         
@@ -151,7 +152,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
 
     //
     // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
         return true
     }
@@ -159,8 +160,8 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
 
     
     // Override to support editing the table view.
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        StartSearch(indexPath.item)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        StartSearch((indexPath as NSIndexPath).item)
     }
 
     /*
@@ -181,11 +182,11 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     
     // MARK: - Navigation Segue
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if  SeguesForData == "showResultsAgainCollection"{
             if segue.identifier == SeguesForData{
                 
-                let NavController = segue.destinationViewController as! UINavigationController
+                let NavController = segue.destination as! UINavigationController
                 
                 let destView : ListingCollectionViewController = NavController.topViewController as!  ListingCollectionViewController
                 
@@ -199,7 +200,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         {
             if segue.identifier == SeguesForData{
                 
-                let NavController = segue.destinationViewController as! UINavigationController
+                let NavController = segue.destination as! UINavigationController
                 
                 let destView : ListingTableViewController  = NavController.topViewController as!  ListingTableViewController
                 
@@ -216,7 +217,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     
     //MARK: Actions
     
-    @IBAction func Search_NavBar_action(sender: AnyObject) {
+    @IBAction func Search_NavBar_action(_ sender: AnyObject) {
         
         
             self.tabBarController?.selectedIndex = 0;
@@ -225,7 +226,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     
     
     //MARK: Functions DELEGATE
-    func passSearches(newList: [Search_type]){
+    func passSearches(_ newList: [Search_type]){
         
         print("Sending it in delegate")
         
@@ -244,7 +245,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         }
     }
     
-    func passSegueDisplay(segueToDisplay : String){
+    func passSegueDisplay(_ segueToDisplay : String){
         
         if segueToDisplay == "ShowCollectionSegue"
         {
@@ -256,16 +257,16 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         
     }
     
-    func passFirstViewDelegate(delegate: FirstViewControllerDelegate) {
+    func passFirstViewDelegate(_ delegate: FirstViewControllerDelegate) {
         self.FirstViewDelegate = delegate
     }
     
-    func passLocation(location : CLLocation){
+    func passLocation(_ location : CLLocation){
         self.local = location
     }
     
     //MARK: Actions
-    func StartSearch(indexForSearch: Int){
+    func StartSearch(_ indexForSearch: Int){
         if(self.connectedToNetwork())
         {
             print("Starting Search system")
@@ -288,25 +289,25 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
                 else
                 {
                     print("We found a error")
-                    EZLoadingActivity.hide(success: false, animated: true)
+                    EZLoadingActivity.hide(true,animated: true)
                     
                     print(error)
                     
                     //Display a warning, NO DATA, ERROR OCCURED.
                     let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                        message: NSLocalizedString("ErrorGettingData", comment: "Error"), preferredStyle: UIAlertControllerStyle.Alert)
+                        message: NSLocalizedString("ErrorGettingData", comment: "Error"), preferredStyle: UIAlertControllerStyle.alert)
                     
-                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.Cancel, handler: nil)
+                    let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                     
                     alert.addAction(okButton)
                     
-                    self.presentViewController(alert, animated: true, completion: nil)
+                    self.present(alert, animated: true, completion: nil)
                     
                 }
             })
             
             
-            Async.background {
+            DispatchQueue.global(qos: .background).async {
                 while self.businessList.isEmpty {
                     //print("Still Loading Data")
                     if self.businessList.count != 0{
@@ -321,12 +322,13 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
                         break;
                     }
                 }
-                }.main {
+                DispatchQueue.main.async {
                     if (self.APICALL?.dataError == nil)
                     {
-                        self.performSegueWithIdentifier(self.SeguesForData, sender:self)
-                        EZLoadingActivity.hide(success: true, animated: true)
+                        self.performSegue(withIdentifier: self.SeguesForData, sender:self)
+                        EZLoadingActivity.hide(true, animated: true)
                     }
+                }
             }
             
             
@@ -336,15 +338,15 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
             //Display a warning, NO NETWORK.
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                 message: NSLocalizedString("NoNetworkError", comment: "Error"),
-                preferredStyle: UIAlertControllerStyle.Alert)
+                preferredStyle: UIAlertControllerStyle.alert)
             
             let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""),
-                style: UIAlertActionStyle.Cancel, handler: nil)
+                style: UIAlertActionStyle.cancel, handler: nil)
             
             
             alert.addAction(okButton)
             
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
 
     }
@@ -353,11 +355,13 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     func connectedToNetwork() -> Bool {
         
         var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
-        guard let defaultRouteReachability = withUnsafePointer(&zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
         }) else {
             return false
         }
@@ -367,9 +371,11 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
             return false
         }
         
-        let isReachable = flags.contains(.Reachable)
+        let isReachable = flags.contains(.reachable)
         //let needsConnection = flags.contains(.ConnectionRequired)
         return (isReachable)
+        
+        
     }
 
     
@@ -377,7 +383,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     //Saved Searches into Disk
     func saveSearches(){
         
-        let didSave = NSKeyedArchiver.archiveRootObject(searchListToDisplay, toFile: Search_type.ArchiveURL.path!)
+        let didSave = NSKeyedArchiver.archiveRootObject(searchListToDisplay, toFile: Search_type.ArchiveURL.path)
         
         if(!didSave)
         {
@@ -391,7 +397,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     //Load Searches from Disk
     func loadpreviousSearches() -> [Search_type]?{
     
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Search_type.ArchiveURL.path!) as? [Search_type]
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Search_type.ArchiveURL.path) as? [Search_type]
     }
     
 
