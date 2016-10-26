@@ -38,6 +38,8 @@ class ListingDetailsViewController: UIViewController {
     
     @IBOutlet weak var ListingType: UILabel!
     
+    @IBOutlet weak var ListingCategory: UILabel!
+    
     @IBOutlet weak var Callback_button: UIButton!
     
     @IBOutlet weak var BackButton: UIBarButtonItem!
@@ -98,6 +100,7 @@ class ListingDetailsViewController: UIViewController {
         ListingCity.text = business.city
         ListingState.text = business.state
         ListingZipCode.text = business.zip
+        ListingCategory.text = business.Category
         
         if(business.type == Business_Type.Sponsored){
             ListingImage.image = UIImage(named: "sponsored")!
@@ -111,7 +114,7 @@ class ListingDetailsViewController: UIViewController {
         
         
         APICALL = SoleoAPI()
-        self.APICALL?.apiKey = <#YOUR API KEY #>
+        self.APICALL?.apiKey = <#Your APIKEY#>
         
         if(!business.presented){
         
@@ -187,9 +190,24 @@ class ListingDetailsViewController: UIViewController {
                             self.business = returningBusiness!
                             self.ListinnDisplayNumber.text =    (self.business.displayNumber!.stringValue).toPhoneNumber()
                             self.ListingMonetizationNumber.text = (self.business.callCompletionNumber!.stringValue).toPhoneNumber()
-                            for var details in self.business.extraDetails{
-                                details.append("-- \n")
-                                self.Extra_info.text?.append(details)
+                            if self.business.details != nil
+                            {
+                                self.Extra_info.text?.append("Is Busines Open: \(self.business.details?.isOpen) \n")
+                                
+                                self.Extra_info.text?.append("Is Busines Timezone: \(self.business.details?.TimeZone) \n")
+                                self.Extra_info.text?.append("Is Busines Pasealable Hours: \(self.business.details!.ParseableHours) \n")
+                                
+                                self.Extra_info.text?.append("Display Hours:-- \n")
+                                for hours in (self.business.details?.DisplayHours)!{
+                                    self.Extra_info.text?.append(hours)
+                                }
+
+                                
+                                self.Extra_info.text?.append("Descriptors:-- \n")
+                                for details in (self.business.details?.descriptors)!{
+                                    self.Extra_info.text?.append(details)
+                                }
+
                             }
                             
                             
@@ -208,10 +226,26 @@ class ListingDetailsViewController: UIViewController {
             
             ListinnDisplayNumber.text =    (business.displayNumber!.stringValue).toPhoneNumber()
             ListingMonetizationNumber.text = (business.callCompletionNumber!.stringValue).toPhoneNumber()
-            for var details in business.extraDetails{
-                details.append("-- \n")
-                Extra_info.text?.append(details)
+            if self.business.details != nil
+            {
+                self.Extra_info.text?.append("Is Busines Open: \(self.business.details?.isOpen) \n")
+                
+                self.Extra_info.text?.append("Is Busines Timezone: \(self.business.details?.TimeZone) \n")
+                self.Extra_info.text?.append("Is Busines Pasealable Hours: \(self.business.details?.ParseableHours) \n")
+                
+                self.Extra_info.text?.append("Display Hours:-- \n")
+                for hours in (self.business.details?.DisplayHours)!{
+                    self.Extra_info.text?.append(hours)
+                }
+                
+                
+                self.Extra_info.text?.append("Descriptors:-- \n")
+                for details in (self.business.details?.descriptors)!{
+                    self.Extra_info.text?.append(details)
+                }
+                
             }
+
             
             // Do any additional setup after loading the view.
             activityIndicator.stopAnimating()
@@ -334,7 +368,7 @@ class ListingDetailsViewController: UIViewController {
             ListingCollectionDelegate!.updateBusinees(business)
         }
         
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController!.popViewController(animated: true)
     }
     
     

@@ -73,7 +73,7 @@ class LeftViewController: UIViewController, LeftViewControllerDelegate {
             
         }
         
-         passDataForward("FilterType", dataToSend: FilterType.rawValue)
+         passDataForward("FilterType", dataToSend: FilterType.rawValue as AnyObject)
         
         if( radius_toSearch != nil)
         {

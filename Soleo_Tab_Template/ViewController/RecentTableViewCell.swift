@@ -17,17 +17,5 @@ class RecentTableViewCell: UITableViewCell {
     @IBOutlet weak var ValidTime: UILabel!
     
     @IBOutlet weak var FavButton: UIImageView!
-
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 }

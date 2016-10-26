@@ -10,8 +10,8 @@ import UIKit
 import CoreLocation
 import AVFoundation
 import SystemConfiguration
+import EZLoadingActivity
 import Soleo_Local_Search_API_Framework
-
 
 protocol FirstViewControllerDelegate{
     
@@ -21,12 +21,16 @@ protocol FirstViewControllerDelegate{
 
 class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate, FirstViewControllerDelegate, UITabBarControllerDelegate {
     
+    
     var LeftSideDelegate : LeftViewControllerDelegate?
     var RecentTableDelegate : RecentTableViewControllerDelegate?
     
     //MARK: Fields
     @IBOutlet weak var Mic_Button: UIImageView!
     @IBOutlet weak var SearchField: UITextField!
+    @IBOutlet weak var SearchField_key: UITextField!
+    @IBOutlet weak var SearchField_name: UITextField!
+    @IBOutlet weak var SearchField_cat: UITextField!
     
     @IBOutlet weak var SearchButton: UIButton!
     
@@ -36,6 +40,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     var AudioSession = AVAudioSession()
     
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
+    
     
     //MARK: SOLEO API Fields
     
@@ -48,6 +53,8 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     var keyword : String = ""
     
     var category : String = ""
+    
+    var freeformquery : String = ""
     
     var businessList = [Business]()
     
@@ -66,14 +73,6 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     var HaveLocation = false
     
     var searchList = [Search_type]()
-
-    
-    //MARK: Override Functions
-    override func viewWillAppear(_ animated: Bool) {
-     
-    }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,14 +80,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         
         //Setup the TextField
         SearchField.delegate = self
-        
-        let VoiceSearchMinibutton = UIButton(type: UIButtonType.custom)
-        VoiceSearchMinibutton.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
-        VoiceSearchMinibutton.setImage(UIImage(named:"Mic2"),for: UIControlState())
-        VoiceSearchMinibutton.addTarget(self, action: #selector(FirstViewController.VoiceSearch_Action(_:)), for: UIControlEvents.touchUpInside)
-        
-        SearchField.leftView = VoiceSearchMinibutton;
-        SearchField.leftViewMode = UITextFieldViewMode.always;
+        SearchField_key.delegate = self
+        SearchField_name.delegate = self
+        SearchField_cat.delegate = self
         
         if(CLLocationManager.locationServicesEnabled())
         {
@@ -308,6 +302,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     @IBAction func VoiceSearch_Action(_ sender: AnyObject) {
     
+        
         let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                                                       message: NSLocalizedString("VoiceRegNotAvailable", comment: "Error"),
                         preferredStyle: UIAlertControllerStyle.alert)
@@ -324,7 +319,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     @IBAction func Start_Search(_ sender: AnyObject) {
         
-        if(keyword.isEmpty)
+        if(keyword.isEmpty && name.isEmpty && category.isEmpty && freeformquery.isEmpty )
         {
             let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
                 message: NSLocalizedString("ErrorSearchNoComplete", comment: "Error"),
@@ -347,7 +342,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                 
                 self.businessList.removeAll()
                 self.APICALL = SoleoAPI.init(location: local!, name: name, category: category, keyword: keyword,city: toSearch_City, state: toSearch_State, postal: toSearch_PostalCode)
-                self.APICALL?.apiKey = <#YOUR API KEY #>
+                self.APICALL?.apiKey = <#Your APIKEY#>
+
+				self.APICALL?.toSearch_freeFormQuery = freeformquery
                 
                 if self.toSearchFilter != nil{
                     self.APICALL?.sortType = toSearchFilter!
@@ -368,15 +365,25 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                     else
                     {
                         print("We found a error")
-                        EZLoadingActivity.hide(success: false, animated: true)
+                        EZLoadingActivity.hide(false, animated: true)
                         
                         print(error)
                         
-                        if (error?.userInfo.keys.first == "info")
+                        if (error?.userInfo != nil)
                         {
-                            //Display a warning, NO DATA, ERROR OCCURED.
-                            let alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
-                                message: error?.userInfo.values.first as? String, preferredStyle: UIAlertControllerStyle.alert)
+                            let alert : UIAlertController
+                            
+                            if (error?.userInfo.first?.key as! String == "info")
+                            {
+                                //Display a warning, NO DATA, ERROR OCCURED.
+                                alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
+                                                              message: error?.userInfo.first?.value as? String, preferredStyle: UIAlertControllerStyle.alert)
+                            }
+                            else{
+                                //Display a warning, NO DATA, ERROR OCCURED.
+                                alert = UIAlertController(title: NSLocalizedString("Error", comment: "Error"),
+                                                              message: error?.userInfo.first?.value as? String, preferredStyle: UIAlertControllerStyle.alert)
+                            }
                             
                             let okButton = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: UIAlertActionStyle.cancel, handler: nil)
                             
@@ -400,7 +407,7 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                 })
                 
 
-                Async.background {
+                DispatchQueue.global(qos: .background).async {
                     while self.businessList.isEmpty {
                         //print("Still Loading Data")
                         if self.businessList.count != 0{
@@ -414,13 +421,22 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
                             break;
                         }
                     }
-                    }.main {
+                    DispatchQueue.main.async {
                         if (self.APICALL?.dataError == nil)
                         {
-                            self.performSegue(withIdentifier: self.SeguesForData, sender:self)
-                            EZLoadingActivity.hide(success: true, animated: true)
-                            self.searchList.append((self.APICALL?.SearchRequest)!)
+                            SoleoAPI.SplitMultiCategory_All(self.businessList, updateProcess: { (newDictionary, Categories) in
+                                
+                                print("----- New Split Dictionary ----", newDictionary)
+                                print("----- New Categories ----", Categories)
+                                
+                                self.performSegue(withIdentifier: self.SeguesForData, sender:self)
+                                EZLoadingActivity.hide(true, animated: true)
+                                self.searchList.append((self.APICALL?.SearchRequest)!)
+                                
+                            })
+                            
                         }
+                    }
                 }
                 
                 
@@ -483,7 +499,9 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool{
         
-        SearchField.resignFirstResponder();
+        textField.resignFirstResponder();
+        
+        Start_Search(textField)
         
         return true
 
@@ -493,11 +511,13 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     
     func textFieldDidEndEditing(_ textField: UITextField)
     {
-        if (!SearchField.text!.isEmpty)
-        {
-            keyword = SearchField.text!
-//            name = SearchField.text!
-        }
+                keyword = SearchField_key.text!
+
+                name = SearchField_name.text!
+
+                category = SearchField_cat.text!
+
+                freeformquery = SearchField.text!
     }
     
     //MARK: Location Functions
@@ -548,9 +568,10 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print ("Location Error: \(error.description)")
+        print ("Location Error: \(error.localizedDescription)")
         manager.stopUpdatingLocation();
     }
+    
     
     //MARK: Controller DataFlow and Segue
     
@@ -595,10 +616,13 @@ class FirstViewController: UIViewController, UITextFieldDelegate, UINavigationCo
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
         guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
         }) else {
             return false
         }
+
         
         var flags : SCNetworkReachabilityFlags = []
         if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {

@@ -1,0 +1,18 @@
+PODS:
+  - BGTableViewRowActionWithImage (0.3.6)
+  - EZLoadingActivity (0.8)
+  - SwiftyJSON (3.0.0)
+
+DEPENDENCIES:
+  - BGTableViewRowActionWithImage
+  - EZLoadingActivity
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  BGTableViewRowActionWithImage: 3517276bcee26e559465bcca13151afc33ab6d2a
+  EZLoadingActivity: 6fd75a05765a4085f4b6fef6f62edf9f144b3139
+  SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+
+PODFILE CHECKSUM: 09504a3665932408695bb241f672ea3e1e238bd9
+
+COCOAPODS: 1.0.1

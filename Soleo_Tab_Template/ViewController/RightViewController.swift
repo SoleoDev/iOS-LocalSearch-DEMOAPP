@@ -41,7 +41,7 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     let mainStoryBoard = UIStoryboard(name: "Main", bundle: nil)
     
     let pickerData_Sort = ["Both",
-        "Distance", "Ad Revenue"]
+        "Distance", "Ad Revenue", "Name, Category, Distance"]
     
     let pickerData_Radius = ["1 mi",
         "5 mi", "10 mi", "25 mi", "50 mi"]
@@ -157,6 +157,9 @@ class RightViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 case "Both":
                     FilterType = Business_Sort_Type.both
                     break
+                
+                case "Name, Category, Distance":
+                    FilterType = Business_Sort_Type.nameCategoryDistance
                 
                 default:
                     FilterType = Business_Sort_Type.both

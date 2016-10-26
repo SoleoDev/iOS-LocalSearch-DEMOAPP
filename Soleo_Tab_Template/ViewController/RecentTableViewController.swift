@@ -10,6 +10,7 @@ import UIKit
 import SystemConfiguration
 import CoreLocation
 import Soleo_Local_Search_API_Framework
+import EZLoadingActivity
 
 protocol RecentTableViewControllerDelegate{
     
@@ -55,7 +56,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         //Setting up edit
         navigationItem.rightBarButtonItem = editButtonItem
         
-        self.tableView.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
+        self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background_pattern")!)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,7 +96,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         }
         
         
-        cell.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "Cellsbackground"))
+        cell.backgroundColor = UIColor(patternImage: UIImage(named: "Cellsbackground")!)
 
         return cell
     }
@@ -130,7 +131,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         
         FavAction.backgroundColor = UIColor.yellow
         
-        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle(), title: (NSLocalizedString("Delete", comment: "action"))) { (rowAction, indexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: .default, title: (NSLocalizedString("Delete", comment: "action"))) { (rowAction, indexPath) -> Void in
                 print("Deleting")
 
                 self.searchListToDisplay.remove(at: (indexPath as NSIndexPath).item)
@@ -276,7 +277,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
             
             self.businessList.removeAll()
             self.APICALL = SoleoAPI.init()
-            self.APICALL?.apiKey = <#YOUR API KEY #>
+            self.APICALL?.apiKey = <#Your APIKEY#>
             
             
             //start API GET DATA
@@ -290,7 +291,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
                 else
                 {
                     print("We found a error")
-                    EZLoadingActivity.hide(success: false, animated: true)
+                    EZLoadingActivity.hide(true,animated: true)
                     
                     print(error)
                     
@@ -308,7 +309,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
             })
             
             
-            Async.background {
+            DispatchQueue.global(qos: .background).async {
                 while self.businessList.isEmpty {
                     //print("Still Loading Data")
                     if self.businessList.count != 0{
@@ -323,12 +324,13 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
                         break;
                     }
                 }
-                }.main {
+                DispatchQueue.main.async {
                     if (self.APICALL?.dataError == nil)
                     {
                         self.performSegue(withIdentifier: self.SeguesForData, sender:self)
-                        EZLoadingActivity.hide(success: true, animated: true)
+                        EZLoadingActivity.hide(true, animated: true)
                     }
+                }
             }
             
             
@@ -359,7 +361,9 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         zeroAddress.sin_family = sa_family_t(AF_INET)
         
         guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
         }) else {
             return false
         }
@@ -372,6 +376,8 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
         let isReachable = flags.contains(.reachable)
         //let needsConnection = flags.contains(.ConnectionRequired)
         return (isReachable)
+        
+        
     }
 
     
@@ -379,7 +385,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     //Saved Searches into Disk
     func saveSearches(){
         
-        let didSave = NSKeyedArchiver.archiveRootObject(searchListToDisplay, toFile: Search_type.ArchiveURL.path!)
+        let didSave = NSKeyedArchiver.archiveRootObject(searchListToDisplay, toFile: Search_type.ArchiveURL.path)
         
         if(!didSave)
         {
@@ -393,7 +399,7 @@ class RecentTableViewController: UITableViewController, RecentTableViewControlle
     //Load Searches from Disk
     func loadpreviousSearches() -> [Search_type]?{
     
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Search_type.ArchiveURL.path!) as? [Search_type]
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Search_type.ArchiveURL.path) as? [Search_type]
     }
     
 

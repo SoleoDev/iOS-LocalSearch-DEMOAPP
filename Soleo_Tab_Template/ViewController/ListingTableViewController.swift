@@ -39,9 +39,9 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
         self.APICALL = SoleoAPI()
-        self.APICALL?.apiKey = <#YOUR API KEY #>
+        self.APICALL?.apiKey = <#Your APIKEY#>
         
-        self.tableView.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
+        self.tableView.backgroundColor = UIColor(patternImage: UIImage(named: "background_pattern")!)
         
         self.tableView.reloadData()
     }
@@ -85,25 +85,29 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
         
         cell.ListingName.text = currentListing.name
         cell.ListinType.text = currentListing.type.rawValue
+        cell.ListingCategory.text = currentListing.Category
         
         cell.ListingAddress.text = "\(currentListing.address) \(currentListing.city) \(currentListing.state), \(currentListing.zip) "
 
         
-        cell.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
+        cell.backgroundColor = UIColor(patternImage: UIImage(named: "background_pattern")!)
     
-        var distance : CLLocationDistance = 0.0
         if currentListing.Location!.coordinate.latitude != 0.0
         {
-            distance = (userLocation?.distance(from: currentListing.Location!))!
+            
+            let df = MKDistanceFormatter()
+            df.units = .imperialWithYards
+            df.unitStyle = .abbreviated
+            
+            let prettyDistance = df.string(fromDistance: currentListing.distance * 1600)
+            
+            cell.ListingDistance.text = NSLocalizedString("DistanceTo", comment: "Distance") + "\(prettyDistance)"
+            
         }
-        
-        let df = MKDistanceFormatter()
-        
-        let prettyDistance = df.string(fromDistance: distance)
-        
-        
-        
-        cell.ListingDistance.text = NSLocalizedString("DistanceTo", comment: "Distance") + "\(prettyDistance)"
+        else if (currentListing.address.isEmpty)
+        {
+            cell.ListingDistance.text = "National"
+        }
 
         return cell
     }
@@ -433,7 +437,7 @@ class ListingTableViewController: UITableViewController, ListingCollectionViewDe
                         mapKit.name = self.list[(self.indexPathSelected as NSIndexPath).item].name
                         
                         
-                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(mkCoordinate: (self.userLocation?.coordinate)!) ]
+                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(mkCoordinate: (self.userLocation?.coordinate)!) ] as [String : Any]
                         
                         mapKit.openInMaps(launchOptions: launchOptions)
                         

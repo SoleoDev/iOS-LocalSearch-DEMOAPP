@@ -16,9 +16,7 @@ class AboutViewController: UIViewController {
     
     @IBOutlet weak var LicenseTextView: UITextView!
     
-    let Licenses = ["alamofire",
-    "async",
-    "ezloading",
+    let Licenses = ["ezloading",
     "mmdrawercontroller",
     "swiftyjson",
     "bgtableviewrowactionwithimage"]

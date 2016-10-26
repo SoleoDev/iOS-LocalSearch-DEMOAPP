@@ -51,13 +51,13 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         //UI code does not like to re-register if doing it in StoryBoard. Only for programatic items
 //        self.collectionView!.registerClass(ListingCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        self.ListingCollectionView.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "background_pattern"))
+        self.ListingCollectionView.backgroundColor = UIColor(patternImage: UIImage(named: "background_pattern")!)
         
         self.ListingCollectionView.reloadData()
 
         // Do any additional setup after loading the view.
         self.APICALL = SoleoAPI()
-        self.APICALL?.apiKey = <#YOUR API KEY #>
+        self.APICALL?.apiKey = <#Your APIKEY#>
         
     }
 
@@ -110,22 +110,27 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
         
         cell.ListingName.text = currentListing.name
         cell.ListingType.text = currentListing.type.rawValue
-        cell.backgroundColor = UIColor(patternImage: UIImage(imageLiteral: "Background"))
+        cell.ListingCategory.text = currentListing.Category
+        
+        cell.backgroundColor = UIColor(patternImage: UIImage(named: "Background")!)
         cell.ListingAddress.text = "\(currentListing.address) \(currentListing.city) \(currentListing.state), \(currentListing.zip) "
         
-        var distance : CLLocationDistance = 0.0
         if currentListing.Location!.coordinate.latitude != 0.0
         {
-            distance = (userLocation?.distance(from: currentListing.Location!))!
+            
+            let df = MKDistanceFormatter()
+            df.units = .imperialWithYards
+            df.unitStyle = .abbreviated
+            
+            let prettyDistance = df.string(fromDistance: currentListing.distance * 1600)
+            
+            cell.ListingDistance.text = NSLocalizedString("DistanceTo", comment: "Distance") + "\(prettyDistance)"
+            
         }
-        
-        let df = MKDistanceFormatter()
-        
-        let prettyDistance = df.string(fromDistance: distance)
-        
-        
-        
-        cell.ListingDistance.text = NSLocalizedString("DistanceTo", comment: "Distance") + "\(prettyDistance)"
+        else if (currentListing.address.isEmpty)
+        {
+            cell.ListingDistance.text = "National"
+        }
     
         return cell
     }
@@ -453,7 +458,7 @@ class ListingCollectionViewController: UICollectionViewController, ListingCollec
                         mapKit.name = self.list[(self.indexPathSelected as NSIndexPath).item].name
 
                     
-                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(mkCoordinate: (self.userLocation?.coordinate)!) ]
+                        let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving, MKLaunchOptionsShowsTrafficKey : true, MKLaunchOptionsMapCenterKey: NSValue.init(mkCoordinate: (self.userLocation?.coordinate)!) ] as [String : Any]
                         
                         
                         mapKit.openInMaps(launchOptions: launchOptions)
