@@ -64,4 +64,4 @@ ALL COMING....
 
 * Other community or team contact
 developer.soleo.com
-localsearchapi@soleo.com
+soleodeveloper@soleo.com
